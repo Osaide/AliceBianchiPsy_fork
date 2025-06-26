@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dott.ssa Alice Bianchi - Psicologa e Psicologia dello Sport</title>
+    <meta name="description" content="Dott.ssa Alice Bianchi, Psicologa e Psicoterapeuta in formazione a Castelfranco Veneto. Specializzata in Psicologia dello Sport e Sostegno Psicologico per adolescenti, adulti e atleti.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link al file CSS esterno (consigliato) -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        /* BASE STYLES - CONSIGLIO DI SPOSTARE IN style.css */
+        :root {
+            --color-primary-green: #8FA88F; /* Verde Salvia/Oliva - da grafica */
+            --color-secondary-beige: #F5F0E6; /* Beige/Crema */
+            --color-accent-coral: #FF7F50; /* Corallo - per accenti */
+            --color-accent-blue: #A0C0D0; /* Blu polvere - da camicia */
+            --color-text-dark: #333333;
+            --color-text-light: #FFFFFF;
+            --color-bg-light: #FFFFFF;
+            --font-primary: 'Montserrat', sans-serif;
+            --font-headings: 'Playfair Display', serif;
+            --font-accent-script: 'Dancing Script', cursive;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        header {
+            background-color: var(--color-bg-light);
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-family: var(--font-accent-script);
+            font-size: 2em;
+            color: var(--color-primary-green);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-primary-green);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--color-secondary-beige);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-headings);
+            color: var(--color-primary-green);
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 2.8em; text-align: center;}
+        h2 { font-size: 2.2em; text-align: center; }
+        h3 { font-size: 1.8em; color: #5a7a5a; } /* Verde più scuro per H3 */
+
+        .button-primary {
+            display: inline-block;
+            background-color: var(--color-accent-coral);
+            color: var(--color-text-light);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button-primary:hover {
+            background-color: #e06a3e; /* Corallo più scuro */
+        }
+
+        /* Hero Section */
+        #hero {
+            background-image: linear-gradient(rgba(245, 240, 230, 0.7), rgba(245, 240, 230, 0.7)), url('img/hero-background-placeholder.jpg'); /* Sostituisci con immagine di sfondo adatta */
+            background-size: cover;
+            background-position: center;
+            color: var(--color-text-dark);
+            text-align: center;
+            padding: 100px 0;
+        }
+        #hero h1 { color: var(--color-primary-green); }
+        #hero p { font-size: 1.2em; margin-bottom: 30px; }
+
+        /* Chi Sono */
+        #chi-sono .content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        #chi-sono img {
+            width: 300px; /* Adatta la dimensione */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+         #chi-sono .text-content { flex: 1; }
+
+
+        /* Servizi */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .service-card {
+            background-color: var(--color-bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+        .service-card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .service-card ul {
+            list-style: disc;
+            padding-left: 20px;
+            font-size: 0.95em;
+        }
+
+        /* Testimonianze */
+        .testimonial-card {
+            background-color: var(--color-secondary-beige); /* o var(--color-bg-light) se la sezione è beige */
+            padding: 20px;
+            border-left: 5px solid var(--color-primary-green);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial-card p:last-child {
+            text-align: right;
+            font-style: normal;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Sedi e Tariffe */
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .location-card {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .location-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+         #sedi-tariffe .tariffe {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: var(--color-secondary-beige);
+            border-radius: 5px;
+        }
+
+        /* Contatti */
+        #contatti form {
+            max-width: 600px;
+            margin: 30px auto 0;
+            padding: 20px;
+            background-color: var(--color-secondary-beige);
+            border-radius: 8px;
+        }
+        #contatti label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        #contatti input[type="text"],
+        #contatti input[type="email"],
+        #contatti textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #contatti textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-info p {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .social-links { text-align: center; margin-top: 20px; }
+        .social-links a { margin: 0 10px; text-decoration: none; font-size: 1.5em; color: var(--color-primary-green); }
+
+
+        /* Footer */
+        footer {
+            background-color: var(--color-text-dark);
+            color: var(--color-text-light);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+        }
+        footer a { color: var(--color-secondary-beige); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .container { flex-direction: column; }
+            nav ul { margin-top: 10px; }
+            nav ul li { margin: 0 10px; }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            #chi-sono .content { flex-direction: column; text-align: center; }
+            #chi-sono img { margin-bottom: 20px; width: 250px;}
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Dott.ssa Alice Bianchi</a>
+            <nav>
+                <ul>
+                    <li><a href="#chi-sono">Chi Sono</a></li>
+                    <li><a href="#servizi">Servizi</a></li>
+                    <li><a href="#approccio">Approccio</a></li>
+                    <li><a href="#target">A Chi Mi Rivolgo</a></li>
+                    <li><a href="#testimonianze">Dicono di Me</a></li>
+                    <li><a href="#sedi-tariffe">Sedi e Tariffe</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Sblocca il Tuo Potenziale. Ritrova il Tuo Equilibrio.</h1>
+                <p>Psicologa e Psicoterapeuta in formazione, specializzata in Psicologia dello Sport e Sostegno Psicologico. Ti aiuto a superare le sfide, migliorare le tue prestazioni e coltivare il tuo benessere.</p>
+                <a href="#servizi" class="button-primary">Scopri Come Posso Aiutarti</a>
+            </div>
+        </section>
+
+        <section id="chi-sono">
+            <div class="container content">
+                <img src="img/alice-bianchi-profilo.jpg" alt="Dott.ssa Alice Bianchi">
+                <div class="text-content">
+                    <h2>Piacere di Conoscerti, Sono Alice.</h2>
+                    <p>Sono la Dott.ssa Alice Bianchi, Psicologa iscritta all'Ordine degli Psicologi del Veneto. La mia passione è accompagnare le persone attraverso i momenti di cambiamento e crescita, sia nella vita quotidiana che nel contesto sportivo.</p>
+                    <p>Ho conseguito la Laurea Magistrale in Psicologia Clinica e di Comunità presso IUSVE e mi sto specializzando come Psicoterapeuta presso la scuola C.O.I.R.A.G. con approccio psicodinamico. Ho approfondito la mia formazione in Psicologia dello Sport (IUSVE), un ambito che mi permette di unire la comprensione della mente al mondo della performance e del benessere fisico.</p>
+                    <p>Credo profondamente nel potere della relazione terapeutica: un ambiente sicuro, di fiducia e accoglienza, dove puoi sentirti libero/a di esplorare te stesso/a con autenticità e senza giudizio. Il mio obiettivo è essere una risorsa al tuo fianco.</p>
+                    <p>Nell'anno 2024 sono stata componente del Gruppo di Lavoro di Psicologia dello Sport dell'Ordine degli Psicologi e delle Psicologhe del Veneto.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="servizi">
+            <div class="container">
+                <h2>Un Percorso su Misura per Te</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="img/grafica-sostegno-psicologico.jpg" alt="Sostegno Psicologico">
+                        <h3>Sostegno Psicologico e Benessere Emotivo</h3>
+                        <p>Offro supporto e sostegno psicologico a preadolescenti, adolescenti, giovani adulti e adulti che affrontano momenti di cambiamento, difficoltà o crisi personali e relazionali. Attraverso un approccio psicodinamico, lavoriamo insieme per esplorare emozioni, pensieri e comportamenti, portare alla luce dinamiche profonde e promuovere una maggiore consapevolezza di sé.</p>
+                        <h4>Aree di intervento principali:</h4>
+                        <ul>
+                            <li>Gestione di ansia, stress e attacchi di panico</li>
+                            <li>Difficoltà relazionali e affettive</li>
+                            <li>Bassa autostima e insicurezza</li>
+                            <li>Periodi di crisi e cambiamento (lutto, separazioni, transizioni)</li>
+                            <li>Disturbi dell'umore (es. depressione)</li>
+                            <li>Fobie, paure, disturbo ossessivo-compulsivo</li>
+                            <li>Sostegno alla genitorialità</li>
+                            <li>Disturbi del comportamento alimentare (DCA)</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/psicologia-dello-sport-immagine.jpg" alt="Psicologia dello Sport">
+                        <h3>Psicologia dello Sport per Atleti e Team</h3>
+                        <p>Affianco atleti singoli, squadre e staff tecnico per ottimizzare la performance e promuovere il benessere psicofisico. L'obiettivo è sviluppare abilità mentali, gestire la pressione agonistica, migliorare la comunicazione e favorire uno sviluppo sano, soprattutto nei giovani atleti. Ogni intervento è personalizzato.</p>
+                        <h4>Aree di intervento principali:</h4>
+                        <ul>
+                            <li>Mental Training (Goal Setting, Imagery, Self-Talk)</li>
+                            <li>Gestione dell'ansia da prestazione e stress agonistico</li>
+                            <li>Incremento della motivazione e fiducia in sé</li>
+                            <li>Miglioramento della concentrazione e focus</li>
+                            <li>Gestione infortuni e recupero psicologico</li>
+                            <li>Comunicazione efficace e dinamiche di squadra</li>
+                            <li>Sviluppo della resilienza</li>
+                            <li>Tecniche di rilassamento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="approccio">
+            <div class="container">
+                <h2>Ascolto, Comprensione, Crescita: Il Mio Approccio</h2>
+                <p>Il mio approccio si fonda sull'ascolto attivo e sull'empatia. L'<strong>approccio psicodinamico</strong> mi guida nell'esplorare come esperienze passate ed emozioni inconsce possano influenzare il presente, per favorire una maggiore consapevolezza e autentiche possibilità di cambiamento.</p>
+                <p>Nella <strong>Psicologia dello Sport</strong>, adotto un modello <strong>biopsicosociale</strong>, considerando l'atleta nella sua interezza – mente, corpo e contesto relazionale – per interventi efficaci e mirati al benessere globale.</p>
+                <p>In ogni percorso, la <strong>relazione terapeutica</strong> è al centro: uno spazio di fiducia reciproca dove sentirsi accolti e compresi è il primo passo verso la trasformazione.</p>
+            </div>
+        </section>
+
+        <section id="target">
+            <div class="container">
+                <h2>Percorsi Dedicati A...</h2>
+                <ul>
+                    <li><strong>Adolescenti e Preadolescenti (dai 11/14 anni):</strong> Per affrontare le sfide della crescita, difficoltà scolastiche, relazionali o emotive.</li>
+                    <li><strong>Giovani Adulti:</strong> Per orientarsi nelle scelte, gestire l'ansia e costruire la propria identità.</li>
+                    <li><strong>Adulti:</strong> Per superare crisi, migliorare relazioni, gestire lo stress e riscoprire il benessere.</li>
+                    <li><strong>Atleti (individuali e di squadra):</strong> Per ottimizzare la performance mentale e gestire la pressione.</li>
+                    <li><strong>Allenatori e Staff Sportivo:</strong> Per migliorare comunicazione e gestione del gruppo.</li>
+                    <li><strong>Genitori di Giovani Atleti:</strong> Per comprendere e sostenere il percorso sportivo ed emotivo dei figli.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="testimonianze">
+            <div class="container">
+                <h2>Le Vostre Parole, la Mia Più Grande Soddisfazione</h2>
+                <div class="testimonial-card">
+                    <p>"Mi sono sentito accolto e ascoltato. Professionalità, empatia e capacità di mettere a proprio agio, che mi hanno aiutato a comprendere meglio me stesso."</p>
+                    <p>- Leonardo</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Professionista molto sensibile, aperta ed empatica. Accoglie ed accompagna in un percorso efficacie dando, almeno per la mia esperienza, risultati concreti."</p>
+                    <p>- Matteo S.</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"La dottoressa Alice è davvero super accogliente, e competente. Mi sono sentito a mio agio da subito!! Mi ha ascoltato e compreso già dal primo incontro... Con la dottoressa Alice sto imparando a gestire le sfide che affronto ogni giorno..."</p>
+                    <p>- Paziente Anonimo</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sedi-tariffe">
+            <div class="container">
+                <h2>Incontriamoci: Sedi e Modalità</h2>
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <img src="img/studio-privato-castelfranco.jpg" alt="Studio Privato Castelfranco Veneto">
+                        <h3>Studio Privato Castelfranco Veneto</h3>
+                        <p>Via Giuseppe Garibaldi 19, Castelfranco Veneto</p>
+                        <p><em>Visito: Adulti, Ragazzi (dai 11 anni)</em></p>
+                    </div>
+                    <div class="location-card">
+                        <img src="img/sport-target-logo.jpg" alt="Poliambulatorio Fisioterapia Sport Target">
+                        <h3>Poliambulatorio Fisioterapia Sport Target</h3>
+                        <p>Piazza della Serenissima 60, Castelfranco Veneto</p>
+                        <p><em>Visito: Adulti, Ragazzi (dai 11 anni)</em></p>
+                    </div>
+                    <div class="location-card">
+                         <img src="img/consulenza-online.jpg" alt="Consulenza Online">
+                        <h3>Consulenze Online</h3>
+                        <p>Comodamente da casa tua, per percorsi flessibili e accessibili.</p>
+                        <p><em>Visito: Adulti, Ragazzi (dai 14 anni)</em></p>
+                    </div>
+                </div>
+                <div class="tariffe">
+                    <h3>Tariffe Trasparenti</h3>
+                    <ul>
+                        <li><strong>Primo colloquio psicologico:</strong> 60 €</li>
+                        <li><strong>Colloqui successivi</strong> (psicologici, clinici, psicoterapia, coaching, psicologia dello sport): Da 60 € a seduta</li>
+                        <li><strong>Sostegno alla genitorialità:</strong> Da 90 € a seduta</li>
+                    </ul>
+                    <p><small><em>Le tariffe possono variare in base alla specificità del percorso. Contattami per dettagli. Modalità di pagamento accettate: Bonifico, Bonifico Istantaneo, Satispay, Carta di Credito/Debito (variano per sede).</em></small></p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="formazione-accademica">
+            <div class="container">
+                <h2>Formazione Continua per Offrirti il Meglio</h2>
+                 <ul>
+                    <li>Specializzanda in Psicoterapia psicodinamica individuale e di gruppo (COIRAG, sede di Padova), da gennaio 2023 in corso</li>
+                    <li>Laurea Magistrale in Psicologia Clinica e di Comunità (IUSVE - Istituto Universitario Salesiano Venezia), ottobre 2021</li>
+                    <li>Tirocinio di specializzazione in Psicologia dello Sport (IUSVE), da ottobre 2021 a ottobre 2022</li>
+                    <li>Laurea triennale in Scienze e Tecniche psicologiche dello Sviluppo, della Personalità e delle Relazioni interpersonali (Università degli Studi di Padova), ottobre 2019</li>
+                    <li>Tirocini presso ULSS 2 (Centro Provinciale Disturbi dell'Alimentazione, UOS Età Evolutiva) e ULSS 6 (Centro Salute Mentale).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contatti">
+            <div class="container">
+                <h2>Iniziamo il Tuo Percorso Insieme</h2>
+                <p style="text-align:center;">Se senti il bisogno di un supporto o vuoi esplorare come la psicologia può aiutarti, non esitare a contattarmi. Sarò felice di rispondere alle tue domande e fissare un primo colloquio conoscitivo.</p>
+                
+                <form action="https://formspree.io/f/TUO_CODICE_FORMSPREE" method="POST"> <!-- Sostituisci con il tuo endpoint Formspree o altro servizio -->
+                    <div>
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="phone">Telefono (opzionale):</label>
+                        <input type="text" id="phone" name="phone">
+                    </div>
+                    <div>
+                        <label for="message">Messaggio:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy" style="font-weight:normal; display:inline;"> Acconsento al trattamento dei dati personali secondo la <a href="#privacy-policy-link">Privacy Policy</a>.</label>
+                    </div>
+                    <button type="submit" class="button-primary">Invia Messaggio</button>
+                </form>
+
+                <div class="contact-info">
+                    <p>Oppure contattami direttamente:</p>
+                    <p><strong>Email:</strong> <a href="mailto:alice.bianchi.psicologa@gmail.com">alice.bianchi.psicologa@gmail.com</a></p>
+                    <!-- <p><strong>Telefono:</strong> <a href="tel:+39NUMERO">+39 TUO NUMERO</a> (se vuoi renderlo pubblico)</p> -->
+                    <p>Puoi anche trovarmi e prenotare su <a href="https://www.miodottore.it/alice-bianchi-3/psicologo-psicologo-clinico/castelfranco-veneto" target="_blank" rel="noopener noreferrer">Miodottore.it</a></p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/alicebianchi.psicologa/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <!-- Qui potresti inserire un'icona SVG di Instagram -->
+                        IG
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Dott.ssa Alice Bianchi - Psicologa. P.IVA: 05240210260</p>
+            <p>Iscr. Albo Psicologi Veneto n. 12152</p>
+            <p><a href="#privacy-policy-placeholder">Privacy Policy</a> | <a href="#cookie-policy-placeholder">Cookie Policy</a></p>
+            <p><small>Sito web statico. Per invio messaggi tramite form, si utilizza un servizio esterno.</small></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
