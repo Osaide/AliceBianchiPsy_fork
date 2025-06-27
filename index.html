@@ -8,277 +8,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Link al file CSS esterno (consigliato) -->
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <style>
-        /* BASE STYLES - CONSIGLIO DI SPOSTARE IN style.css */
-        :root {
-            --color-primary-green: #8FA88F; /* Verde Salvia/Oliva - da grafica */
-            --color-secondary-beige: #F5F0E6; /* Beige/Crema */
-            --color-accent-coral: #FF7F50; /* Corallo - per accenti */
-            --color-accent-blue: #A0C0D0; /* Blu polvere - da camicia */
-            --color-text-dark: #333333;
-            --color-text-light: #FFFFFF;
-            --color-bg-light: #FFFFFF;
-            --font-primary: 'Montserrat', sans-serif;
-            --font-headings: 'Playfair Display', serif;
-            --font-accent-script: 'Dancing Script', cursive;
-        }
-
-        body {
-            font-family: var(--font-primary);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: var(--color-text-dark);
-            background-color: var(--color-bg-light);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-
-        header {
-            background-color: var(--color-bg-light);
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header .logo {
-            font-family: var(--font-accent-script);
-            font-size: 2em;
-            color: var(--color-primary-green);
-            text-decoration: none;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--color-text-dark);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: var(--color-primary-green);
-        }
-
-        section {
-            padding: 60px 0;
-        }
-
-        section:nth-child(even) {
-            background-color: var(--color-secondary-beige);
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-headings);
-            color: var(--color-primary-green);
-            margin-bottom: 20px;
-        }
-        h1 { font-size: 2.8em; text-align: center;}
-        h2 { font-size: 2.2em; text-align: center; }
-        h3 { font-size: 1.8em; color: #5a7a5a; } /* Verde più scuro per H3 */
-
-        .button-primary {
-            display: inline-block;
-            background-color: var(--color-accent-coral);
-            color: var(--color-text-light);
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .button-primary:hover {
-            background-color: #e06a3e; /* Corallo più scuro */
-        }
-
-        /* Hero Section */
-        #hero {
-            background-image: linear-gradient(rgba(245, 240, 230, 0.7), rgba(245, 240, 230, 0.7)), url('img/hero-background-placeholder.jpg'); /* Sostituisci con immagine di sfondo adatta */
-            background-size: cover;
-            background-position: center;
-            color: var(--color-text-dark);
-            text-align: center;
-            padding: 100px 0;
-        }
-        #hero h1 { color: var(--color-primary-green); }
-        #hero p { font-size: 1.2em; margin-bottom: 30px; }
-
-        /* Chi Sono */
-        #chi-sono .content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-        #chi-sono img {
-            width: 300px; /* Adatta la dimensione */
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-         #chi-sono .text-content { flex: 1; }
-
-
-        /* Servizi */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        .service-card {
-            background-color: var(--color-bg-light);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            text-align: left;
-        }
-        .service-card img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .service-card ul {
-            list-style: disc;
-            padding-left: 20px;
-            font-size: 0.95em;
-        }
-
-        /* Testimonianze */
-        .testimonial-card {
-            background-color: var(--color-secondary-beige); /* o var(--color-bg-light) se la sezione è beige */
-            padding: 20px;
-            border-left: 5px solid var(--color-primary-green);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-        .testimonial-card p:last-child {
-            text-align: right;
-            font-style: normal;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-
-        /* Sedi e Tariffe */
-        .locations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .location-card {
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .location-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-         #sedi-tariffe .tariffe {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: var(--color-secondary-beige);
-            border-radius: 5px;
-        }
-
-        /* Contatti */
-        #contatti form {
-            max-width: 600px;
-            margin: 30px auto 0;
-            padding: 20px;
-            background-color: var(--color-secondary-beige);
-            border-radius: 8px;
-        }
-        #contatti label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        #contatti input[type="text"],
-        #contatti input[type="email"],
-        #contatti textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        #contatti textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        .contact-info p {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .social-links { text-align: center; margin-top: 20px; }
-        .social-links a { margin: 0 10px; text-decoration: none; font-size: 1.5em; color: var(--color-primary-green); }
-
-
-        /* Footer */
-        footer {
-            background-color: var(--color-text-dark);
-            color: var(--color-text-light);
-            text-align: center;
-            padding: 30px 0;
-            font-size: 0.9em;
-        }
-        footer a { color: var(--color-secondary-beige); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header .container { flex-direction: column; }
-            nav ul { margin-top: 10px; }
-            nav ul li { margin: 0 10px; }
-            h1 { font-size: 2.2em; }
-            h2 { font-size: 1.8em; }
-            #chi-sono .content { flex-direction: column; text-align: center; }
-            #chi-sono img { margin-bottom: 20px; width: 250px;}
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="container">
             <a href="#" class="logo">Dott.ssa Alice Bianchi</a>
-            <nav>
-                <ul>
+            <button class="mobile-nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav-ul">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <nav class="main-nav">
+                <ul id="main-nav-ul">
                     <li><a href="#chi-sono">Chi Sono</a></li>
                     <li><a href="#servizi">Servizi</a></li>
                     <li><a href="#approccio">Approccio</a></li>
@@ -302,7 +45,7 @@
 
         <section id="chi-sono">
             <div class="container content">
-                <img src="img/alice-bianchi-profilo.jpg" alt="Dott.ssa Alice Bianchi">
+                <img src="img/alice-bianchi-profilo.jpg" alt="Dott.ssa Alice Bianchi" loading="lazy">
                 <div class="text-content">
                     <h2>Piacere di Conoscerti, Sono Alice.</h2>
                     <p>Sono la Dott.ssa Alice Bianchi, Psicologa iscritta all'Ordine degli Psicologi del Veneto. La mia passione è accompagnare le persone attraverso i momenti di cambiamento e crescita, sia nella vita quotidiana che nel contesto sportivo.</p>
@@ -318,7 +61,7 @@
                 <h2>Un Percorso su Misura per Te</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <img src="img/grafica-sostegno-psicologico.jpg" alt="Sostegno Psicologico">
+                        <img src="img/grafica-sostegno-psicologico.jpg" alt="Sostegno Psicologico" loading="lazy">
                         <h3>Sostegno Psicologico e Benessere Emotivo</h3>
                         <p>Offro supporto e sostegno psicologico a preadolescenti, adolescenti, giovani adulti e adulti che affrontano momenti di cambiamento, difficoltà o crisi personali e relazionali. Attraverso un approccio psicodinamico, lavoriamo insieme per esplorare emozioni, pensieri e comportamenti, portare alla luce dinamiche profonde e promuovere una maggiore consapevolezza di sé.</p>
                         <h4>Aree di intervento principali:</h4>
@@ -334,7 +77,7 @@
                         </ul>
                     </div>
                     <div class="service-card">
-                        <img src="img/psicologia-dello-sport-immagine.jpg" alt="Psicologia dello Sport">
+                        <img src="img/psicologia-dello-sport-immagine.jpg" alt="Psicologia dello Sport" loading="lazy">
                         <h3>Psicologia dello Sport per Atleti e Team</h3>
                         <p>Affianco atleti singoli, squadre e staff tecnico per ottimizzare la performance e promuovere il benessere psicofisico. L'obiettivo è sviluppare abilità mentali, gestire la pressione agonistica, migliorare la comunicazione e favorire uno sviluppo sano, soprattutto nei giovani atleti. Ogni intervento è personalizzato.</p>
                         <h4>Aree di intervento principali:</h4>
@@ -399,19 +142,19 @@
                 <h2>Incontriamoci: Sedi e Modalità</h2>
                 <div class="locations-grid">
                     <div class="location-card">
-                        <img src="img/studio-privato-castelfranco.jpg" alt="Studio Privato Castelfranco Veneto">
+                        <img src="img/studio-privato-castelfranco.jpg" alt="Studio Privato Castelfranco Veneto" loading="lazy">
                         <h3>Studio Privato Castelfranco Veneto</h3>
                         <p>Via Giuseppe Garibaldi 19, Castelfranco Veneto</p>
                         <p><em>Visito: Adulti, Ragazzi (dai 11 anni)</em></p>
                     </div>
                     <div class="location-card">
-                        <img src="img/sport-target-logo.jpg" alt="Poliambulatorio Fisioterapia Sport Target">
+                        <img src="img/sport-target-logo.jpg" alt="Poliambulatorio Fisioterapia Sport Target" loading="lazy">
                         <h3>Poliambulatorio Fisioterapia Sport Target</h3>
                         <p>Piazza della Serenissima 60, Castelfranco Veneto</p>
                         <p><em>Visito: Adulti, Ragazzi (dai 11 anni)</em></p>
                     </div>
                     <div class="location-card">
-                         <img src="img/consulenza-online.jpg" alt="Consulenza Online">
+                         <img src="img/consulenza-online.jpg" alt="Consulenza Online" loading="lazy">
                         <h3>Consulenze Online</h3>
                         <p>Comodamente da casa tua, per percorsi flessibili e accessibili.</p>
                         <p><em>Visito: Adulti, Ragazzi (dai 14 anni)</em></p>
@@ -466,7 +209,7 @@
                     </div>
                     <div>
                         <input type="checkbox" id="privacy" name="privacy" required>
-                        <label for="privacy" style="font-weight:normal; display:inline;"> Acconsento al trattamento dei dati personali secondo la <a href="#privacy-policy-link">Privacy Policy</a>.</label>
+                        <label for="privacy" style="font-weight:normal; display:inline;"> Acconsento al trattamento dei dati personali secondo la <a href="#privacy-policy-placeholder">Privacy Policy</a>.</label>
                     </div>
                     <button type="submit" class="button-primary">Invia Messaggio</button>
                 </form>
@@ -497,7 +240,44 @@
     </footer>
 
     <script>
+        // Script per l'anno nel footer
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Script per la navigazione mobile
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        // Assumendo che il contenitore del menu mobile ora abbia la classe 'mobile-menu-container'
+        // e sia stato spostato come figlio diretto del body.
+        const mobileMenuContainer = document.querySelector('.mobile-menu-container');
+        const body = document.body;
+
+        if (mobileNavToggle && mobileMenuContainer) {
+            mobileNavToggle.addEventListener('click', () => {
+                mobileNavToggle.classList.toggle('is-active');
+                mobileMenuContainer.classList.toggle('is-open'); // Usa il selettore corretto per il menu
+
+                const isExpanded = mobileNavToggle.getAttribute('aria-expanded') === 'true' || false;
+                mobileNavToggle.setAttribute('aria-expanded', !isExpanded);
+
+                // Opzionale: Bloccare lo scroll del body
+                // if (mobileMenuContainer.classList.contains('is-open')) {
+                //    body.style.overflow = 'hidden';
+                // } else {
+                //    body.style.overflow = '';
+                // }
+            });
+
+            const navLinks = mobileMenuContainer.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenuContainer.classList.contains('is-open')) {
+                        mobileNavToggle.classList.remove('is-active');
+                        mobileMenuContainer.classList.remove('is-open');
+                        mobileNavToggle.setAttribute('aria-expanded', 'false');
+                        // body.style.overflow = '';
+                    }
+                });
+            });
+        }
     </script>
 
 </body>
