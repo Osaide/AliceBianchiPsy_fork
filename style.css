@@ -1,0 +1,589 @@
+/* BASE STYLES */
+:root {
+    --color-primary-green: #8FA88F; /* Verde Salvia - Principale */
+    --color-secondary-beige: #F5F0E6; /* Beige Chiaro - Secondario per sfondi alternati */
+    --color-bg-light: #FFFFFF;         /* Bianco - Sfondo principale */
+    --color-text-dark: #3A3A3A;       /* Grigio scuro per testo, leggermente più morbido del nero puro */
+    --color-text-light: #FFFFFF;
+
+    /* Accenti Pastello e Vividi */
+    --color-accent-coral-pastel: #FFB299;
+    --color-accent-coral-vivid: #FF7F50;
+    --color-accent-blue-pastel: #C2D8E3;
+    --color-accent-blue-vivid: #A0C0D0;
+    --color-primary-green-light: #A8BDA8; /* Verde Salvia più chiaro per hover/elementi secondari */
+
+    /* Palette per Glassmorphism (sfondi leggermente trasparenti) */
+    --color-glass-bg: rgba(255, 255, 255, 0.65); /* Sfondo bianco traslucido, leggermente meno trasparente */
+    --color-glass-bg-beige: rgba(245, 240, 230, 0.75); /* Sfondo beige traslucido, un po' più opaco per leggibilità */
+    --color-glass-border: rgba(200, 200, 200, 0.3);
+    --blur-intensity: 10px; /* Intensità del blur per l'effetto vetro */
+
+    --font-primary: 'Montserrat', sans-serif; /* Per corpo del testo e titoli */
+    --font-headings: 'Montserrat', sans-serif; /* Titoli in sans-serif moderno */
+    --font-accent-script: 'Dancing Script', cursive; /* Per il logo/nome */
+
+    /* Dinamismi */
+    --transition-smooth: all 0.3s ease-in-out;
+    --transition-fast: all 0.2s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Classe per attivare l'animazione (da aggiungere con JS per un effetto on-scroll) */
+.fade-in-up-effect {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0; /* Inizia trasparente finché JS non aggiunge la classe o l'animazione parte */
+}
+
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: var(--color-text-dark);
+    background-color: var(--color-bg-light);
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+header {
+    background-color: var(--color-bg-light);
+    padding: 15px 0;
+    border-bottom: 1px solid transparent; /* Rimuoviamo il bordo solido, lo gestirà il glassmorphism */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-glass-bg); /* Sfondo traslucido */
+    backdrop-filter: blur(var(--blur-intensity)); /* Effetto blur */
+    -webkit-backdrop-filter: blur(var(--blur-intensity)); /* Supporto Safari */
+    border-bottom: 1px solid var(--color-glass-border); /* Bordo sottile per definire */
+    transition: var(--transition-smooth); /* Transizione per eventuali cambi di stato */
+}
+/* Aggiungiamo una classe per quando l'header è "scrolled" se vogliamo differenziare lo stile,
+   ma per ora l'effetto è sempre attivo quando sticky. */
+/*
+header.scrolled {
+    background-color: var(--color-glass-bg);
+    backdrop-filter: blur(var(--blur-intensity));
+    -webkit-backdrop-filter: blur(var(--blur-intensity));
+    border-bottom: 1px solid var(--color-glass-border);
+}
+*/
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-family: var(--font-accent-script);
+    font-size: 2em;
+    color: var(--color-primary-green);
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-weight: 600;
+            transition: var(--transition-smooth);
+}
+
+nav ul li a:hover {
+            color: var(--color-primary-green-light);
+}
+
+section {
+    padding: 60px 0;
+}
+
+section:nth-child(even) {
+    background-color: var(--color-secondary-beige);
+}
+        /* Assicura che la prima sezione (Hero) non abbia lo sfondo beige se è la prima */
+        section:first-of-type:nth-child(odd) {
+            background-color: var(--color-bg-light);
+        }
+
+
+h1, h2, h3 {
+    font-family: var(--font-headings);
+            color: var(--color-primary-green); /* Titoli principali in Verde Salvia */
+    margin-bottom: 20px;
+            font-weight: 600; /* Un po' più di peso per i titoli Montserrat */
+}
+h1 { font-size: 2.8em; text-align: center;}
+h2 { font-size: 2.2em; text-align: center; }
+        h3 { font-size: 1.8em; color: var(--color-primary-green-light); } /* H3 in verde salvia più chiaro o un accento */
+
+.button-primary {
+    display: inline-block;
+            background-color: transparent; /* Sfondo trasparente per stile outline */
+            color: var(--color-accent-coral-vivid); /* Testo colore corallo vivido */
+            padding: 12px 28px; /* Aumentato leggermente il padding laterale */
+    text-decoration: none;
+            border-radius: 8px;
+    font-weight: 600;
+            transition: var(--transition-smooth), box-shadow 0.3s ease-in-out; /* Aggiunta transizione per box-shadow */
+            border: 2px solid var(--color-accent-coral-vivid); /* Bordo corallo vivido */
+    cursor: pointer;
+            position: relative; /* Necessario per eventuale pseudo-elemento glow */
+            z-index: 1; /* Per stare sopra eventuali effetti di sfondo */
+            box-shadow: none; /* Rimuove l'ombra di default */
+}
+
+        .button-primary:hover,
+        .button-primary:focus { /* :focus per accessibilità */
+            background-color: var(--color-accent-coral-vivid); /* Sfondo corallo vivido all'hover/focus */
+            color: var(--color-text-light); /* Testo bianco */
+            box-shadow: 0 0 15px 0px rgba(255, 127, 80, 0.7), /* Glow corallo */
+                        0 0 5px 0px rgba(255, 127, 80, 0.5); /* Glow interno più sottile */
+            transform: translateY(-2px);
+            border-color: var(--color-accent-coral-vivid); /* Assicura che il bordo rimanga o sparisca se si preferisce */
+}
+
+        /* Per un effetto "glow" più sottile e continuo che non dipenda solo dall'ombra del box */
+        .button-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: इन्हेरिट; /* Usa lo stesso border-radius del bottone */
+            z-index: -1;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            box-shadow: 0 0 15px 5px var(--color-accent-coral-pastel); /* Glow pastello */
+        }
+
+        .button-primary:hover::before {
+            opacity: 0.5; /* Mostra il glow pastello esterno all'hover */
+        }
+
+
+/* Hero Section */
+#hero {
+            /* Considerare un'immagine di sfondo più chiara o un overlay più forte se il testo diventa difficile da leggere */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('img/hero-background-placeholder.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-dark);
+    text-align: center;
+    padding: 100px 0;
+}
+        #hero h1 { color: var(--color-primary-green); } /* Mantiene il colore primario per l'H1 principale */
+        #hero p { font-size: 1.2em; margin-bottom: 30px; color: var(--color-text-dark); }
+
+        /* Animazione per le sezioni */
+        section {
+            padding: 60px 0;
+            /* Applichiamo l'animazione a tutte le sezioni tranne la prima (hero) */
+        }
+        section:not(#hero) {
+            animation: fadeInUp 0.7s ease-out forwards;
+            opacity: 0;
+            /* Possiamo aggiungere un delay progressivo sezioni se necessario con JS,
+               o se sono poche, manualmente con nth-of-type, ma diventa meno manutenibile */
+        }
+        /* Applichiamo un delay base diverso per alcune sezioni specifiche per scaglionare l'effetto */
+        #chi-sono { animation-delay: 0.1s; }
+        #servizi { animation-delay: 0.2s; }
+        #approccio { animation-delay: 0.1s; } /* Se su riga diversa da servizi */
+        #target { animation-delay: 0.2s; }
+        #testimonianze { animation-delay: 0.1s; }
+        #sedi-tariffe { animation-delay: 0.2s; }
+        #formazione-accademica { animation-delay: 0.1s; }
+        #contatti { animation-delay: 0.2s; }
+
+
+/* Chi Sono */
+#chi-sono .content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+#chi-sono img {
+    width: 300px; /* Adatta la dimensione */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: var(--transition-smooth);
+        }
+        #chi-sono img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+ #chi-sono .text-content { flex: 1; }
+
+
+/* Servizi */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+            perspective: 1000px; /* Aggiunge prospettiva per effetti 3D sulle card */
+        }
+.service-card {
+            background-color: var(--color-glass-bg-beige); /* Sfondo beige traslucido per le card su sfondo chiaro */
+            backdrop-filter: blur(var(--blur-intensity));
+            -webkit-backdrop-filter: blur(var(--blur-intensity));
+            border: 1px solid var(--color-glass-border);
+    padding: 25px;
+            border-radius: 12px; /* Angoli più arrotondati per glassmorphism */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Ombra più pronunciata per staccare */
+    text-align: left;
+            transition: var(--transition-smooth), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transizione più elaborata per transform */
+            animation: fadeInUp 0.5s ease-out forwards; /* Animazione di entrata */
+            animation-delay: calc(var(--card-index, 0) * 0.1s); /* Delay per entrata a cascata, se impostiamo --card-index */
+            opacity: 0; /* Inizia invisibile, l'animazione la mostra */
+        }
+        /* Se la sezione servizi è su sfondo beige, le card dovrebbero usare --color-glass-bg */
+        section:nth-child(even) .service-card {
+            background-color: var(--color-glass-bg); /* Sfondo bianco traslucido per card su sfondo beige */
+}
+
+.service-card:hover {
+            transform: translateY(-8px) rotateY(5deg) scale(1.02); /* Sollevamento, leggera rotazione 3D e ingrandimento */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+.service-card img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.service-card ul {
+    list-style: disc; /* Considerare icone personalizzate o nessuno stile per un look più minimal */
+    padding-left: 20px;
+    font-size: 0.95em;
+    color: var(--color-text-dark);
+}
+.service-card h3 { /* Assicura che gli H3 nelle card usino il colore primario */
+    color: var(--color-primary-green);
+}
+
+
+/* Testimonianze */
+#testimonianze { /* Se la sezione testimonianze è su sfondo bianco, le card possono essere beige */
+    background-color: var(--color-bg-light);
+}
+.testimonial-card {
+    background-color: var(--color-secondary-beige);
+    padding: 25px; /* Più padding */
+    border-left: 5px solid var(--color-primary-green-light); /* Bordo più chiaro */
+    margin-bottom: 25px;
+    font-style: italic;
+    border-radius: 8px; /* Arrotondamento angoli */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+.testimonial-card:hover {
+    transform: scale(1.03); /* Leggero ingrandimento */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.testimonial-card p {
+    color: var(--color-text-dark);
+}
+.testimonial-card p:last-child { /* Nome del testimone */
+    text-align: right;
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 15px;
+    color: var(--color-primary-green);
+}
+
+/* Sedi e Tariffe */
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    perspective: 1000px; /* Prospettiva per effetti 3D */
+}
+.location-card {
+    padding: 20px;
+    border: 1px solid var(--color-glass-border); /* Coerente con glassmorphism se si volesse applicare */
+    background-color: var(--color-bg-light); /* Sfondo di base, potrebbe diventare glass */
+    border-radius: 12px; /* Angoli arrotondati */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: var(--transition-smooth), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--card-index, 0) * 0.1s);
+    opacity: 0;
+}
+.location-card:hover {
+    transform: translateY(-8px) rotateY(-3deg) scale(1.02); /* Effetto 3D opposto a service-card per varietà */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+.location-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0; /* Arrotonda solo angoli superiori se l'immagine è attaccata al bordo */
+    margin-bottom: 15px; /* Più spazio */
+}
+.location-card h3 { /* Assicura che gli H3 nelle card usino il colore primario */
+    color: var(--color-primary-green);
+}
+ #sedi-tariffe .tariffe {
+    margin-top: 40px;
+    padding: 25px; /* Più padding */
+    background-color: var(--color-secondary-beige);
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+#sedi-tariffe .tariffe ul {
+    list-style: none; /* Rimuovi i punti elenco per un look più pulito */
+    padding-left: 0;
+}
+#sedi-tariffe .tariffe li {
+    margin-bottom: 8px; /* Spazio tra gli item */
+    color: var(--color-text-dark);
+}
+
+
+/* Contatti */
+#contatti { /* Se la sezione contatti è su sfondo bianco */
+    background-color: var(--color-bg-light);
+}
+#contatti form {
+    max-width: 600px;
+    margin: 30px auto 0;
+    padding: 30px; /* Più padding */
+    background-color: var(--color-secondary-beige);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+#contatti label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-primary-green); /* Etichette in Verde Salvia */
+}
+#contatti input[type="text"],
+#contatti input[type="email"],
+#contatti textarea {
+    width: 100%;
+    padding: 12px; /* Più padding interno */
+    margin-bottom: 20px; /* Più spazio sotto */
+    border: 1px solid #DDE2E5; /* Bordo più chiaro, meno invadente */
+    border-radius: 6px; /* Angoli arrotondati */
+    box-sizing: border-box;
+    background-color: var(--color-bg-light); /* Sfondo bianco per i campi */
+    color: var(--color-text-dark);
+    transition: var(--transition-smooth);
+}
+#contatti input[type="text"]:focus,
+#contatti input[type="email"]:focus,
+#contatti textarea:focus {
+    border-color: var(--color-primary-green-light);
+    box-shadow: 0 0 0 3px rgba(143, 168, 143, 0.2); /* Glow sottile al focus */
+    outline: none;
+}
+#contatti textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+.contact-info p {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--color-text-dark);
+}
+.contact-info p a, footer a {
+    color: var(--color-primary-green); /* Link in Verde Salvia */
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+.contact-info p a:hover, footer a:hover {
+    color: var(--color-primary-green-light); /* Verde Salvia più chiaro all'hover */
+    text-decoration: underline;
+}
+.social-links { text-align: center; margin-top: 25px; } /* Più spazio */
+.social-links a {
+    margin: 0 12px; /* Più spazio tra icone */
+    text-decoration: none;
+    font-size: 1.8em; /* Icone più grandi */
+    color: var(--color-primary-green);
+    transition: var(--transition-smooth);
+}
+.social-links a:hover {
+    color: var(--color-primary-green-light);
+    transform: scale(1.1); /* Leggero ingrandimento */
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--color-text-dark); /* Footer scuro per contrasto */
+    color: var(--color-secondary-beige); /* Testo chiaro su sfondo scuro */
+    text-align: center;
+    padding: 40px 0; /* Più padding */
+    font-size: 0.9em;
+}
+/* footer a ereditato da .contact-info p a */
+
+/* Responsive */
+@media (max-width: 768px) { /* Tablet e mobile landscape */
+    header .container {
+        flex-direction: column;
+        align-items: center; /* Centra logo e nav quando in colonna */
+    }
+    nav ul {
+        margin-top: 15px; /* Più spazio dopo il logo */
+        flex-wrap: wrap; /* Permette alle voci di andare a capo se non ci stanno */
+        justify-content: center; /* Centra le voci della nav */
+    }
+    nav ul li {
+        margin: 5px 10px; /* Aggiunge spazio verticale e orizzontale */
+    }
+    h1 { font-size: 2.4em; } /* Leggermente più grande per leggibilità */
+    h2 { font-size: 2.0em; }
+    h3 { font-size: 1.6em; }
+
+    #chi-sono .content {
+        flex-direction: column;
+        text-align: center;
+    }
+    #chi-sono img {
+        margin-bottom: 20px;
+        width: 220px; /* Leggermente più piccolo per schermi medi */
+        max-width: 80%; /* Assicura che non superi la larghezza del contenitore */
+    }
+
+    .services-grid,
+    .locations-grid { /* Griglie a colonna singola */
+        grid-template-columns: 1fr;
+    }
+    .service-card, .location-card {
+        margin-bottom: 20px; /* Spazio tra le card in colonna */
+    }
+
+    #contatti form {
+        padding: 20px; /* Riduci padding su mobile */
+    }
+}
+
+@media (max-width: 480px) { /* Mobile portrait (small) */
+    body {
+        font-size: 15px; /* Riduci leggermente il font base per schermi piccoli */
+    }
+    .container {
+        width: 95%; /* Contenitore più largo per sfruttare lo spazio */
+    }
+    header .logo {
+        font-size: 1.8em; /* Logo più piccolo */
+    }
+    nav ul li {
+        margin: 5px 8px; /* Meno margine per le voci nav */
+    }
+    nav ul li a {
+        font-size: 0.95em;
+    }
+
+    h1 { font-size: 2.0em; }
+    h2 { font-size: 1.7em; }
+    h3 { font-size: 1.4em; }
+
+    #hero p {
+        font-size: 1.1em;
+        margin-bottom: 25px;
+    }
+    .button-primary {
+        padding: 10px 20px; /* Bottoni più piccoli */
+        font-size: 0.9em;
+    }
+
+    #chi-sono img {
+        width: 180px;
+    }
+
+    .service-card, .testimonial-card, .location-card, #sedi-tariffe .tariffe, #contatti form {
+        padding: 20px; /* Padding consistente per le card */
+    }
+
+    #contatti input[type="text"],
+    #contatti input[type="email"],
+    #contatti textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    #contatti label {
+        font-size: 0.95em;
+    }
+    #contatti input[type="checkbox"] + label { /* Etichetta checkbox */
+        font-size: 0.9em; /* Riduci per farla stare meglio */
+    }
+
+
+    .social-links a {
+        font-size: 1.6em; /* Icone social leggermente più piccole */
+        margin: 0 8px;
+    }
+
+    footer {
+        padding: 30px 0;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 360px) { /* Mobile very small */
+    header .logo {
+        font-size: 1.6em;
+    }
+    nav ul {
+        /* Considerare un menu hamburger per schermi così piccoli se la nav è lunga */
+    }
+    nav ul li a {
+        font-size: 0.9em;
+    }
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.3em; }
+
+    #hero p { font-size: 1.0em; }
+    .button-primary {
+        padding: 8px 15px;
+        font-size: 0.85em;
+    }
+    #chi-sono img {
+        width: 150px;
+    }
+}
