@@ -7,17 +7,20 @@
     --color-text-light: #FFFFFF;
 
     /* Accenti Pastello e Vividi */
-    --color-accent-coral-pastel: #FFB299;
-    --color-accent-coral-vivid: #FF7F50;
-    --color-accent-blue-pastel: #C2D8E3;
-    --color-accent-blue-vivid: #A0C0D0;
+    --color-accent-coral-pastel: #FFC8B3; /* Leggermente più desaturato/chiaro per il pastello */
+    --color-accent-coral-vivid: #FF7043; /* Leggermente più saturo e aranciato */
+    --color-accent-coral-glow: rgba(255, 112, 67, 0.8); /* Colore per il glow, più intenso */
+    --color-accent-blue-pastel: #D0E0E8;
+    --color-accent-blue-vivid: #82B1FF; /* Blu più acceso */
     --color-primary-green-light: #A8BDA8; /* Verde Salvia più chiaro per hover/elementi secondari */
+    --color-primary-green-darker: #7A9A7A; /* Verde Salvia più scuro per contrasto o bordi */
+
 
     /* Palette per Glassmorphism (sfondi leggermente trasparenti) */
-    --color-glass-bg: rgba(255, 255, 255, 0.65); /* Sfondo bianco traslucido, leggermente meno trasparente */
-    --color-glass-bg-beige: rgba(245, 240, 230, 0.75); /* Sfondo beige traslucido, un po' più opaco per leggibilità */
-    --color-glass-border: rgba(200, 200, 200, 0.3);
-    --blur-intensity: 10px; /* Intensità del blur per l'effetto vetro */
+    --color-glass-bg: rgba(255, 255, 255, 0.60); /* Leggermente più trasparente */
+    --color-glass-bg-beige: rgba(245, 240, 230, 0.70);
+    --color-glass-border: rgba(200, 200, 200, 0.25); /* Bordo più sottile */
+    --blur-intensity: 8px; /* Blur leggermente ridotto per performance e leggibilità */
 
     --font-primary: 'Montserrat', sans-serif; /* Per corpo del testo e titoli */
     --font-headings: 'Montserrat', sans-serif; /* Titoli in sans-serif moderno */
@@ -164,29 +167,42 @@ h2 { font-size: 2.2em; text-align: center; }
         .button-primary:focus { /* :focus per accessibilità */
             background-color: var(--color-accent-coral-vivid); /* Sfondo corallo vivido all'hover/focus */
             color: var(--color-text-light); /* Testo bianco */
-            box-shadow: 0 0 15px 0px rgba(255, 127, 80, 0.7), /* Glow corallo */
-                        0 0 5px 0px rgba(255, 127, 80, 0.5); /* Glow interno più sottile */
-            transform: translateY(-2px);
-            border-color: var(--color-accent-coral-vivid); /* Assicura che il bordo rimanga o sparisca se si preferisce */
+            box-shadow: 0 0 18px 2px var(--color-accent-coral-glow), /* Glow corallo più forte */
+                        0 0 8px 0px rgba(255, 112, 67, 0.6); /* Glow interno più definito */
+            transform: translateY(-3px) scale(1.03); /* Sollevamento e leggera scala più pronunciati */
+            border-color: var(--color-accent-coral-vivid);
 }
 
-        /* Per un effetto "glow" più sottile e continuo che non dipenda solo dall'ombra del box */
         .button-primary::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: इन्हेरिट; /* Usa lo stesso border-radius del bottone */
+            top: -2px; /* Espande leggermente l'area del glow */
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: inherit; /* Usa lo stesso border-radius del bottone */
             z-index: -1;
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             opacity: 0;
-            box-shadow: 0 0 15px 5px var(--color-accent-coral-pastel); /* Glow pastello */
+            /* box-shadow: 0 0 20px 8px var(--color-accent-coral-pastel); Glow pastello più ampio */
         }
 
         .button-primary:hover::before {
-            opacity: 0.5; /* Mostra il glow pastello esterno all'hover */
+            opacity: 0.6;
+            box-shadow: 0 0 25px 10px var(--color-accent-coral-pastel); /* Glow pastello più ampio e visibile */
+        }
+
+        /* Stile generale per i link testuali */
+        a {
+            color: var(--color-primary-green-darker); /* Verde più scuro per i link */
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        a:hover, a:focus {
+            color: var(--color-accent-coral-vivid); /* Corallo vivido per hover */
+            text-decoration: underline;
+            text-decoration-color: var(--color-accent-coral-pastel); /* Sottolineatura pastello */
+            text-underline-offset: 3px; /* Distanza sottolineatura dal testo */
         }
 
 
@@ -206,8 +222,24 @@ h2 { font-size: 2.2em; text-align: center; }
         /* Animazione per le sezioni */
         section {
             padding: 60px 0;
-            /* Applichiamo l'animazione a tutte le sezioni tranne la prima (hero) */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transizione per l'hover della sezione */
         }
+
+/* Effetto hover per le sezioni su desktop */
+@media (min-width: 992px) { /* Applica solo su schermi grandi (desktop) */
+    section:not(#hero):hover .container { /* Applichiamo al container interno per non muovere lo sfondo */
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Ombra leggera per staccare */
+        border-radius: 12px; /* Angoli arrotondati al container in hover */
+        /* Potrebbe essere necessario aggiungere un padding al container in hover se il contenuto tocca i bordi */
+    }
+    section:not(#hero) .container { /* Assicuriamo transizione anche per il container */
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease-in-out, border-radius 0.2s ease;
+        border-radius: 0px; /* Default */
+    }
+}
+
+
         section:not(#hero) {
             animation: fadeInUp 0.7s ease-out forwards;
             opacity: 0;
@@ -239,8 +271,8 @@ h2 { font-size: 2.2em; text-align: center; }
             transition: var(--transition-smooth);
         }
         #chi-sono img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: scale(1.06) rotate(2deg); /* Aggiunta leggera rotazione */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.18); /* Ombra più pronunciata */
 }
  #chi-sono .text-content { flex: 1; }
 
@@ -279,8 +311,8 @@ h2 { font-size: 2.2em; text-align: center; }
 }
 
 .service-card:hover {
-            transform: translateY(-8px) rotateY(5deg) scale(1.02); /* Sollevamento, leggera rotazione 3D e ingrandimento */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transform: translateY(-10px) rotateY(4deg) scale(1.03); /* Hover più accentuato */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18); /* Ombra più profonda */
 }
 .service-card img {
     width: 100%;
@@ -317,8 +349,8 @@ h2 { font-size: 2.2em; text-align: center; }
     transition: var(--transition-smooth);
 }
 .testimonial-card:hover {
-    transform: scale(1.03); /* Leggero ingrandimento */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: scale(1.04); /* Ingrandimento leggermente maggiore */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12); /* Ombra più definita */
 }
 .testimonial-card p {
     color: var(--color-text-dark);
@@ -350,8 +382,8 @@ h2 { font-size: 2.2em; text-align: center; }
     opacity: 0;
 }
 .location-card:hover {
-    transform: translateY(-8px) rotateY(-3deg) scale(1.02); /* Effetto 3D opposto a service-card per varietà */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transform: translateY(-10px) rotateY(-4deg) scale(1.03); /* Hover più accentuato */
+    box-shadow: 0 12px 24px rgba(0,0,0,0.18); /* Ombra più profonda */
 }
 .location-card img {
     width: 100%;
@@ -487,6 +519,57 @@ footer {
         width: 220px; /* Leggermente più piccolo per schermi medi */
         max-width: 80%; /* Assicura che non superi la larghezza del contenitore */
     }
+
+    /* Navigazione Mobile come Barra Inferiore */
+    header {
+        padding-bottom: 80px; /* Aggiunge padding in basso all'header per non sovrapporre la nav mobile fissa */
+                               /* Questo è un trucco, l'ideale sarebbe che il main content avesse un padding-bottom */
+    }
+    body { /* Aggiungiamo padding al body per evitare che l'ultimo contenuto sia nascosto dalla nav */
+        padding-bottom: 70px; /* Altezza approssimativa della nav mobile */
+    }
+
+    header nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-glass-bg); /* Sfondo Glassmorphism */
+        backdrop-filter: blur(var(--blur-intensity));
+        -webkit-backdrop-filter: blur(var(--blur-intensity));
+        border-top: 1px solid var(--color-glass-border);
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 1100; /* Sopra l'header sticky */
+        padding: 0; /* Rimuoviamo padding verticale se presente */
+    }
+    header.scrolled nav { /* Se l'header ha una classe scrolled, la nav mobile non ne ha bisogno */
+        /* Stili specifici se necessario quando l'header è scrolled, ma la nav è già fixed */
+    }
+
+    nav ul {
+        margin-top: 0; /* Sovrascrive il margin-top per desktop */
+        flex-direction: row; /* Assicura che sia orizzontale */
+        justify-content: space-around; /* Distribuisce le voci uniformemente */
+        align-items: center;
+        padding: 10px 0; /* Padding verticale interno alla nav */
+        overflow-x: auto; /* Permette scroll orizzontale se le voci sono troppe */
+        -webkit-overflow-scrolling: touch; /* Scrolling fluido su iOS */
+        scrollbar-width: none; /* Nasconde scrollbar su Firefox */
+    }
+    nav ul::-webkit-scrollbar { /* Nasconde scrollbar su Chrome/Safari */
+        display: none;
+    }
+
+    nav ul li {
+        margin: 0 5px; /* Margine ridotto tra le voci */
+        flex-shrink: 0; /* Impedisce alle voci di restringersi troppo */
+    }
+    nav ul li a {
+        padding: 10px 8px; /* Padding per i link */
+        font-size: 0.9em; /* Font più piccolo per la nav mobile */
+        white-space: nowrap; /* Evita che il testo vada a capo */
+    }
+    /* Fine Navigazione Mobile */
 
     .services-grid,
     .locations-grid { /* Griglie a colonna singola */
