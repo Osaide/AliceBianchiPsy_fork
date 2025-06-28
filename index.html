@@ -20,8 +20,13 @@
                     <img src="img/icone/chat-avatar-placeholder.png" alt="Chatbot Avatar">
                 </div>
             </div>
-            <nav>
-                <ul>
+            <nav id="main-nav">
+                <button id="mobile-bottom-nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav-ul">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul id="main-nav-ul">
                     <li><a href="#chi-sono">Chi Sono</a></li>
                     <li><a href="#servizi">Servizi</a></li>
                     <li><a href="#approccio">Approccio</a></li>
@@ -239,48 +244,35 @@
         </div>
     </footer>
 
-    <!-- Mobile Navigation -->
-    <button class="mobile-nav-toggle" aria-label="Apri menu navigazione" aria-expanded="false" aria-controls="mobile-menu-container">
-        <!-- Icona Hamburger (esempio base, può essere SVG o altro) -->
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-    <div class="mobile-menu-container" id="mobile-menu-container" aria-hidden="true">
-        <ul id="mobile-menu-items">
-            <li><a href="#chi-sono">Chi Sono</a></li>
-            <li><a href="#servizi">Servizi</a></li>
-            <li><a href="#approccio">Approccio</a></li>
-            <li><a href="#target">A Chi Mi Rivolgo</a></li>
-            <li><a href="#testimonianze">Dicono di Me</a></li>
-            <li><a href="#sedi-tariffe">Sedi e Tariffe</a></li>
-            <li><a href="#contatti">Contatti</a></li>
-        </ul>
-    </div>
+    <!-- La vecchia Mobile Navigation (toggle + ventaglio) verrà rimossa -->
+    <!-- Lo script per la vecchia navigazione verrà rimosso/modificato -->
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Mobile Menu Logic
-        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-        const mobileMenuContainer = document.getElementById('mobile-menu-container');
-        const mobileMenuItems = document.querySelectorAll('#mobile-menu-items a');
+        // Logica per la nuova navigazione mobile fissa in basso con toggle
+        const mainNav = document.getElementById('main-nav');
+        const mobileToggle = document.getElementById('mobile-bottom-nav-toggle');
+        const mainNavUl = document.getElementById('main-nav-ul');
 
-        if (mobileNavToggle && mobileMenuContainer) {
-            mobileNavToggle.addEventListener('click', () => {
-                const isOpen = mobileMenuContainer.classList.toggle('is-open');
-                mobileNavToggle.classList.toggle('is-active');
-                mobileNavToggle.setAttribute('aria-expanded', isOpen);
-                mobileMenuContainer.setAttribute('aria-hidden', !isOpen);
+        if (mobileToggle && mainNav && mainNavUl) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('mobile-nav-open');
+                mobileToggle.classList.toggle('is-active');
+                mobileToggle.setAttribute('aria-expanded', isOpen);
+                mainNavUl.setAttribute('aria-hidden', !isOpen);
             });
 
-            mobileMenuItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    mobileMenuContainer.classList.remove('is-open');
-                    mobileNavToggle.classList.remove('is-active');
-                    mobileNavToggle.setAttribute('aria-expanded', 'false');
-                    mobileMenuContainer.setAttribute('aria-hidden', 'true');
+            // Chiudi il menu quando si clicca su un link del menu
+            const navLinks = mainNavUl.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('mobile-nav-open')) {
+                        mainNav.classList.remove('mobile-nav-open');
+                        mobileToggle.classList.remove('is-active');
+                        mobileToggle.setAttribute('aria-expanded', 'false');
+                        mainNavUl.setAttribute('aria-hidden', 'true');
+                    }
                 });
             });
         }

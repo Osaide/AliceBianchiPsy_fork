@@ -565,7 +565,7 @@ footer {
 
     /* Rimuoviamo la vecchia logica di navigazione mobile che modificava header nav */
     /* La nuova navigazione è gestita da .mobile-nav-toggle e .mobile-menu-container */
-    header nav { /* Desktop nav */
+    /* header nav { Desktop nav } */ /* Commento rimosso per chiarezza, la regola sotto è quella attiva */
       /* display: flex; /* Assicurati che sia flex per desktop */
       /* position: static; /* Ripristina position se modificata per mobile prima */
       /* width: auto; */
@@ -590,39 +590,494 @@ footer {
     }
     */
 
-    /* Stili per la Nuova Navigazione Mobile */
-    /* Default (Desktop): Nascondi gli elementi della navigazione mobile */
-    .mobile-nav-toggle,
-    .mobile-menu-container {
-        display: none;
+    /* La navigazione a ventaglio e il suo toggle verranno rimossi. */
+    /* Commentiamo le variabili specifiche se non servono più altrove */
+    /*
+    --mobile-nav-toggle-size: 50px;
+    --mobile-nav-toggle-bottom: 20px;
+    --mobile-nav-menu-bottom: calc(var(--mobile-nav-toggle-bottom) + var(--mobile-nav-toggle-size) + 10px);
+    --mobile-nav-item-size: 40px;
+    --mobile-nav-item-spacing: 10px;
+    --mobile-nav-fan-angle: 20deg;
+    --mobile-nav-fan-radius: 100px;
+    */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-/* Definizioni globali per lo stato aperto del menu e le sue transizioni */
-/* Queste non dipendono dalla media query per la loro logica di funzionamento,
-   solo dalla presenza della classe .is-open. */
-.mobile-menu-container {
-    /* Le proprietà di posizionamento (fixed, bottom, left, transform) e
-       aspetto (background, shadow, etc.) verranno definite DENTRO la media query
-       perché sono rilevanti solo quando la navigazione mobile è attiva.
-       Qui definiamo solo ciò che è intrinseco al suo comportamento di apertura/chiusura. */
+/* Classe per attivare l'animazione (da aggiungere con JS per un effetto on-scroll) */
+.fade-in-up-effect {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0; /* Inizia trasparente finché JS non aggiunge la classe o l'animazione parte */
+}
+
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0; /* Verrà aggiunto padding-bottom per la nav mobile fissa */
+    color: var(--color-text-dark);
+    background-color: var(--color-bg-light);
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+header {
+    background-color: var(--color-bg-light);
+    padding: 15px 0;
+    border-bottom: 1px solid transparent;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-glass-bg);
+    backdrop-filter: blur(var(--blur-intensity));
+    -webkit-backdrop-filter: blur(var(--blur-intensity));
+    border-bottom: 1px solid var(--color-glass-border);
+    transition: var(--transition-smooth);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.chat-avatar-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 15px;
+    background-color: var(--color-secondary-beige);
+    border: 2px solid var(--color-primary-green-light);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.chat-avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat-avatar-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--color-primary-green-light);
+}
+
+header .logo {
+    font-family: var(--font-accent-script);
+    font-size: 2em;
+    color: var(--color-primary-green);
+    text-decoration: none;
+}
+
+/* Stili per NAV DESKTOP */
+header nav {
+    /* Questi stili si applicano alla nav desktop */
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Mantiene gli item in linea per desktop */
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+header nav ul li a:hover {
+    color: var(--color-primary-green-light);
+}
+
+
+section {
+    padding: 60px 0;
+}
+
+section:nth-child(even) {
+    background-color: var(--color-secondary-beige);
+}
+
+section:first-of-type:nth-child(odd) {
+    background-color: var(--color-bg-light);
+}
+
+
+h1, h2, h3 {
+    font-family: var(--font-headings);
+    color: var(--color-primary-green);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+h1 { font-size: 2.8em; text-align: center;}
+h2 { font-size: 2.2em; text-align: center; }
+h3 { font-size: 1.8em; color: var(--color-primary-green-light); }
+
+.button-primary {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-accent-coral-vivid);
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition-smooth), box-shadow 0.3s ease-in-out;
+    border: 2px solid var(--color-accent-coral-vivid);
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    box-shadow: none;
+}
+
+.button-primary:hover,
+.button-primary:focus {
+    background-color: var(--color-accent-coral-vivid);
+    color: var(--color-text-light);
+    box-shadow: 0 0 18px 2px var(--color-accent-coral-glow),
+                0 0 8px 0px rgba(255, 112, 67, 0.6);
+    transform: translateY(-3px) scale(1.03);
+    border-color: var(--color-accent-coral-vivid);
+}
+
+.button-primary::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    z-index: -1;
+    transition: opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     opacity: 0;
-    visibility: hidden;
-    transform: translateX(-50%) scale(0.8); /* Stato base per la transizione, left:50% è nel media query */
-    transform-origin: bottom center; /* Assicura che la scala parta dal basso */
-    transition: opacity var(--transition-smooth), transform var(--transition-smooth), visibility var(--transition-smooth);
-    z-index: 1150; /* Deve essere definito globalmente se position:fixed è globale */
-    position: fixed; /* Necessario per z-index e posizionamento fuori flusso */
-    /* Le altre proprietà come width, max-width, padding, background, etc. saranno nel media query */
 }
 
-.mobile-menu-container.is-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) scale(1); /* left:50% è nel media query */
+.button-primary:hover::before {
+    opacity: 0.6;
+    box-shadow: 0 0 25px 10px var(--color-accent-coral-pastel);
+}
+
+a {
+    color: var(--color-primary-green-darker);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+a:hover, a:focus {
+    color: var(--color-accent-coral-vivid);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-coral-pastel);
+    text-underline-offset: 3px;
 }
 
 
-/* Tablet e Mobile (<= 768px) */
+/* Hero Section */
+#hero {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('img/hero/hero-background.png');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-dark);
+    text-align: center;
+    padding: 100px 0;
+}
+#hero h1 { color: var(--color-primary-green); }
+#hero p { font-size: 1.2em; margin-bottom: 30px; color: var(--color-text-dark); }
+
+section {
+    padding: 60px 0;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (min-width: 992px) {
+    section:not(#hero):hover .container {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        border-radius: 12px;
+    }
+    section:not(#hero) .container {
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease-in-out, border-radius 0.2s ease;
+        border-radius: 0px;
+    }
+}
+
+section:not(#hero) {
+    animation: fadeInUp 0.7s ease-out forwards;
+    opacity: 0;
+}
+#chi-sono { animation-delay: 0.1s; }
+#servizi { animation-delay: 0.2s; }
+#approccio { animation-delay: 0.1s; }
+#target { animation-delay: 0.2s; }
+#testimonianze { animation-delay: 0.1s; }
+#sedi-tariffe { animation-delay: 0.2s; }
+#formazione-accademica { animation-delay: 0.1s; }
+#contatti { animation-delay: 0.2s; }
+
+
+/* Chi Sono */
+#chi-sono .content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+#chi-sono img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: var(--transition-smooth);
+}
+#chi-sono img:hover {
+    transform: scale(1.06) rotate(2deg);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.18);
+}
+ #chi-sono .text-content { flex: 1; }
+
+
+/* Servizi */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    perspective: 1000px;
+}
+.service-card {
+    background-color: var(--color-glass-bg-beige);
+    backdrop-filter: blur(var(--blur-intensity));
+    -webkit-backdrop-filter: blur(var(--blur-intensity));
+    border: 1px solid var(--color-glass-border);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: left;
+    transition: var(--transition-smooth), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--card-index, 0) * 0.1s);
+    opacity: 0;
+}
+section:nth-child(even) .service-card {
+    background-color: var(--color-glass-bg);
+}
+
+.service-card:hover {
+    transform: translateY(-10px) rotateY(4deg) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+.service-card img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.service-card ul {
+    list-style: disc;
+    padding-left: 20px;
+    font-size: 0.95em;
+    color: var(--color-text-dark);
+}
+.service-card h3 {
+    color: var(--color-primary-green);
+}
+
+
+/* Testimonianze */
+#testimonianze {
+    background-color: var(--color-bg-light);
+}
+.testimonial-card {
+    background-color: var(--color-secondary-beige);
+    padding: 25px;
+    border-left: 5px solid var(--color-primary-green-light);
+    margin-bottom: 25px;
+    font-style: italic;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+.testimonial-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+.testimonial-card p {
+    color: var(--color-text-dark);
+}
+.testimonial-card p:last-child {
+    text-align: right;
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 15px;
+    color: var(--color-primary-green);
+}
+
+/* Sedi e Tariffe */
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    perspective: 1000px;
+}
+.location-card {
+    padding: 20px;
+    border: 1px solid var(--color-glass-border);
+    background-color: var(--color-bg-light);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: var(--transition-smooth), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--card-index, 0) * 0.1s);
+    opacity: 0;
+}
+.location-card:hover {
+    transform: translateY(-10px) rotateY(-4deg) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+}
+.location-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 15px;
+}
+.location-card h3 {
+    color: var(--color-primary-green);
+}
+ #sedi-tariffe .tariffe {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: var(--color-secondary-beige);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+#sedi-tariffe .tariffe ul {
+    list-style: none;
+    padding-left: 0;
+}
+#sedi-tariffe .tariffe li {
+    margin-bottom: 8px;
+    color: var(--color-text-dark);
+}
+
+
+/* Contatti */
+#contatti {
+    background-color: var(--color-bg-light);
+}
+#contatti form {
+    max-width: 600px;
+    margin: 30px auto 0;
+    padding: 30px;
+    background-color: var(--color-secondary-beige);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+#contatti label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-primary-green);
+}
+#contatti input[type="text"],
+#contatti input[type="email"],
+#contatti textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #DDE2E5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    transition: var(--transition-smooth);
+}
+#contatti input[type="text"]:focus,
+#contatti input[type="email"]:focus,
+#contatti textarea:focus {
+    border-color: var(--color-primary-green-light);
+    box-shadow: 0 0 0 3px rgba(143, 168, 143, 0.2);
+    outline: none;
+}
+#contatti textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+.contact-info p {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--color-text-dark);
+}
+.contact-info p a, footer a {
+    color: var(--color-primary-green);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+.contact-info p a:hover, footer a:hover {
+    color: var(--color-primary-green-light);
+    text-decoration: underline;
+}
+.social-links { text-align: center; margin-top: 25px; }
+.social-links a {
+    margin: 0 12px;
+    text-decoration: none;
+    font-size: 1.8em;
+    color: var(--color-primary-green);
+    transition: var(--transition-smooth);
+}
+.social-links a:hover {
+    color: var(--color-primary-green-light);
+    transform: scale(1.1);
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--color-text-dark);
+    color: var(--color-secondary-beige);
+    text-align: center;
+    padding: 40px 0;
+    font-size: 0.9em;
+}
+
+
+/* Responsive */
 @media (max-width: 768px) {
     header .container {
         flex-direction: column;
@@ -633,7 +1088,18 @@ footer {
         width: 100%;
         margin-bottom: 10px;
     }
-
+    /* Questi stili per nav ul e nav ul li sono per la nav desktop,
+       che ora sarà nascosta e sostituita dalla nav mobile in basso.
+       Quindi, andranno rimossi o adattati per la nuova logica.
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    nav ul li {
+        margin: 5px 10px;
+    }
+    */
     h1 { font-size: 2.4em; }
     h2 { font-size: 2.0em; }
     h3 { font-size: 1.6em; }
@@ -649,149 +1115,134 @@ footer {
     }
 
     /* Nascondi navigazione desktop (<header nav>) su mobile */
-    header nav {
-        display: none;
+    /* Questa regola viene modificata/spostata per la nuova logica */
+    /* header nav {
+        display: none !important;
+    } */
+
+    /* RIMozione COMPLETA stili vecchia navigazione mobile a ventaglio */
+    /* .mobile-nav-toggle, .mobile-menu-container, #mobile-menu-items ecc. sono stati rimossi dal CSS precedente */
+
+    /* NUOVI STILI PER NAVIGAZIONE MOBILE INFERIORE */
+    body {
+        /* Aggiungi padding in fondo per far spazio alla nav mobile fissa */
+        /* L'altezza della nav sarà circa 60px + padding, quindi 80px è un buon inizio */
+        padding-bottom: 80px;
     }
 
-    /* Mostra e stila il toggle della navigazione mobile */
-    .mobile-nav-toggle {
-        display: flex;  /* Sovrascrive il display:none globale */
-        flex-direction: column;
-        justify-content: space-around;
-        width: var(--mobile-nav-toggle-size);
-        height: var(--mobile-nav-toggle-size);
-        background-color: var(--color-primary-green);
+    #mobile-bottom-nav-toggle {
+        display: none; /* Nascosto su desktop */
+        background: none;
         border: none;
-        border-radius: 50%;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        position: fixed; /* Già globale, ma riaffermato per chiarezza contestuale */
-        bottom: var(--mobile-nav-toggle-bottom);
-        left: 50%;
-        transform: translateX(-50%); /* Sovrascrive qualsiasi transform globale se esistesse */
-        z-index: 1200;
+        color: var(--color-text-dark); /* O --color-text-light se lo sfondo della nav è scuro */
+        font-size: 24px; /* Dimensione icona hamburger */
         cursor: pointer;
         padding: 10px;
-        transition: background-color var(--transition-fast);
+        z-index: 1051; /* Sopra la nav ul se si sovrappongono */
     }
 
-    .mobile-nav-toggle span {
+    #mobile-bottom-nav-toggle span {
         display: block;
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-text-light);
-        border-radius: 3px;
-        transition: all var(--transition-fast) ease-in-out;
+        width: 22px;
+        height: 2px;
+        background-color: var(--color-text-dark); /* Colore linee hamburger */
+        margin: 4px 0;
+        transition: all 0.3s ease-in-out;
     }
 
-    .mobile-nav-toggle.is-active {
-        background-color: var(--color-accent-coral-vivid);
+    header nav#main-nav {
+        /* Desktop: rimane com'era (in linea con logo, ecc.) */
+        /* Mobile: diventa la barra fissa in basso */
+        /* Non serve display:none !important; qui perché sovrascriviamo per mobile */
     }
 
-    .mobile-nav-toggle.is-active span:nth-child(1) {
-        transform: translateY(calc(var(--mobile-nav-toggle-size) / 7)) rotate(45deg);
-    }
-    .mobile-nav-toggle.is-active span:nth-child(2) {
-        opacity: 0;
-    }
-    .mobile-nav-toggle.is-active span:nth-child(3) {
-        transform: translateY(calc(var(--mobile-nav-toggle-size) / -7)) rotate(-45deg);
+    header nav#main-nav ul#main-nav-ul {
+        /* Desktop: display: flex; flex-direction: row; */
+        /* Mobile: inizialmente nascosto, poi mostrato come pannello */
+        display: flex; /* Manteniamo flex per desktop */
     }
 
-    /* Stili per il .mobile-menu-container quando la navigazione mobile è attiva */
-    .mobile-menu-container {
-        display: block; /* O flex/grid se necessario per il layout interno, ma per ora block è ok
-                           perché #mobile-menu-items gestirà il layout dei figli.
-                           Cruciale: sovrascrive il display:none globale. */
-        /* Ora applichiamo le proprietà di posizionamento e aspetto che erano globali
-           ma che sono rilevanti solo qui. Quelle di transizione/stato sono già globali. */
-        bottom: var(--mobile-nav-menu-bottom);
-        left: 50%;
-        /* transform: translateX(-50%) scale(0.8); EREDITATO DA GLOBALE, OK */
-        /* transform-origin: bottom center; EREDITATO DA GLOBALE, OK */
-        width: auto;
-        max-width: 90vw;
-        background-color: var(--color-glass-bg-beige);
-        backdrop-filter: blur(var(--blur-intensity));
-        -webkit-backdrop-filter: blur(var(--blur-intensity));
-        border-radius: 15px;
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
-        padding: 20px;
-        /* z-index: 1150; EREDITATO DA GLOBALE, OK */
-        /* position: fixed; EREDITATO DA GLOBALE, OK */
-    }
-    /* La classe .is-open (globale) gestirà opacity, visibility, e il cambio di transform scale */
 
+    @media (max-width: 768px) {
+        header .container {
+            /* Non serve più flex-direction: column per l'header container
+               se la nav è spostata completamente. O forse sì per il logo? Da verificare.
+               Per ora lo lascio, potrebbe servire per centrare il logo se la nav scompare dall'header.
+            */
+        }
 
-    #mobile-menu-items {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex; /* Per allineare gli item prima della trasformazione a ventaglio */
-        flex-direction: column;
-        align-items: center;
-        position: relative; /* Necessario per il posizionamento assoluto dei figli a ventaglio */
-    }
+        header nav#main-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-glass-bg-beige); /* Sfondo per la barra inferiore */
+            backdrop-filter: blur(var(--blur-intensity));
+            -webkit-backdrop-filter: blur(var(--blur-intensity));
+            padding: 0px 15px; /* Padding orizzontale, verticale gestito dagli elementi interni */
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+            z-index: 1050;
+            display: flex; /* Per allineare il toggle e (eventualmente) un titolo */
+            align-items: center;
+            justify-content: flex-end; /* Mette il toggle a destra */
+            height: 60px; /* Altezza fissa per la barra */
+        }
 
-    #mobile-menu-items li {
-        margin: var(--mobile-nav-item-spacing) 0;
-        transform-origin: bottom center;
-        transition: transform var(--transition-fast); /* Transizione per l'effetto ventaglio */
-    }
+        #mobile-bottom-nav-toggle {
+            display: block; /* Mostra il toggle su mobile */
+            /* Stili per l'icona X quando attiva (menu aperto) */
+        }
+        #mobile-bottom-nav-toggle.is-active span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+        #mobile-bottom-nav-toggle.is-active span:nth-child(2) {
+            opacity: 0;
+        }
+        #mobile-bottom-nav-toggle.is-active span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
 
-    #mobile-menu-items li a {
-        display: block;
-        padding: 10px 15px;
-        color: var(--color-text-dark);
-        text-decoration: none;
-        font-weight: 600;
-        background-color: rgba(255,255,255,0.5);
-        border-radius: 8px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        transition: background-color var(--transition-fast), color var(--transition-fast);
-    }
+        header nav#main-nav ul#main-nav-ul {
+            display: none; /* Nascosto di default su mobile */
+            flex-direction: column;
+            position: absolute;
+            bottom: 100%; /* Si posiziona sopra la barra nav (che è alta 60px) */
+            left: 0;
+            right: 0;
+            background-color: var(--color-secondary-beige); /* Sfondo per il menu a comparsa */
+            border-top: 1px solid var(--color-glass-border);
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+            padding: 15px 0; /* Padding verticale per gli item */
+            max-height: calc(100vh - 120px); /* Altezza massima per evitare che esca dallo schermo */
+            overflow-y: auto; /* Scroll se gli item sono troppi */
+        }
 
-    #mobile-menu-items li a:hover,
-    #mobile-menu-items li a:focus {
-        background-color: var(--color-primary-green-light);
-        color: var(--color-text-light);
-    }
+        header nav#main-nav.mobile-nav-open ul#main-nav-ul {
+            display: flex; /* Mostra il menu quando la nav ha la classe .mobile-nav-open */
+        }
 
-    /* Stile a ventaglio per gli items (attivo solo quando .is-open è presente sul container) */
-    .mobile-menu-container.is-open #mobile-menu-items li {
-        position: absolute;
-        bottom: 0;
-        left: calc(50% - var(--mobile-nav-item-size) / 2); /* Centra l'origine della trasformazione */
-        width: auto;
-    }
+        header nav#main-nav ul#main-nav-ul li {
+            margin: 0; /* Rimuovi margini laterali desktop */
+            width: 100%;
+            text-align: center;
+        }
 
-    .mobile-menu-container.is-open #mobile-menu-items li:nth-child(1) {
-        transform: rotate(-60deg) translateY(calc(var(--mobile-nav-fan-radius) * -0.7)) translateX(-20px) ;
+        header nav#main-nav ul#main-nav-ul li a {
+            display: block; /* Link a tutta larghezza */
+            padding: 12px 20px; /* Padding per i link */
+            border-bottom: 1px solid var(--color-glass-border);
+            color: var(--color-text-dark);
+        }
+        header nav#main-nav ul#main-nav-ul li:last-child a {
+            border-bottom: none;
+        }
+        header nav#main-nav ul#main-nav-ul li a:hover {
+            background-color: var(--color-primary-green-light);
+            color: var(--color-text-light);
+        }
     }
-    .mobile-menu-container.is-open #mobile-menu-items li:nth-child(2) {
-        transform: rotate(-40deg) translateY(calc(var(--mobile-nav-fan-radius) * -0.9)) translateX(-10px);
-    }
-    .mobile-menu-container.is-open #mobile-menu-items li:nth-child(3) {
-        transform: rotate(-20deg) translateY(calc(var(--mobile-nav-fan-radius) * -1)) translateX(-5px);
-    }
-    .mobile-menu-container.is-open #mobile-menu-items li:nth-child(4) { /* Centrale */
-        transform: rotate(0deg) translateY(calc(var(--mobile-nav-fan-radius) * -1.05)) ;
-    }
-    .mobile-menu-container.is-open #mobile-menu-items li:nth-child(5) {
-        transform: rotate(20deg) translateY(calc(var(--mobile-nav-fan-radius) * -1)) translateX(5px);
-    }
-    .mobile-menu-container.is-open #mobile-menu-items li:nth-child(6) {
-        transform: rotate(40deg) translateY(calc(var(--mobile-nav-fan-radius) * -0.9)) translateX(10px);
-    }
-    .mobile-menu-container.is-open #mobile-menu-items li:nth-child(7) {
-        transform: rotate(60deg) translateY(calc(var(--mobile-nav-fan-radius) * -0.7)) translateX(20px);
-    }
+    /* Fine nuovi stili navigazione mobile */
 
-    /* Aggiustamento dell'altezza del contenitore #mobile-menu-items per dare spazio al ventaglio */
-    .mobile-menu-container.is-open #mobile-menu-items {
-        min-height: calc(var(--mobile-nav-fan-radius) + var(--mobile-nav-item-size) + 20px);
-    }
-
-    /* Altri stili responsive per griglie, etc. */
     .services-grid,
     .locations-grid { /* Griglie a colonna singola */
         grid-template-columns: 1fr;
