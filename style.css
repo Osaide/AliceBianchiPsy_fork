@@ -1,3 +1,10 @@
+/* This will be the main content wrapper from the original HTML */
+main {
+    position: relative;
+    z-index: 10;
+    background-color: var(--color-bg-light); /* Fallback background for main content area */
+}
+
 /* BASE STYLES */
 :root {
     --color-primary-green: #8FA88F; /* Verde Salvia - Principale */
@@ -71,7 +78,7 @@ header {
     border-bottom: 1px solid transparent; /* Rimuoviamo il bordo solido, lo gestirà il glassmorphism */
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 100; /* Adjusted z-index */
     background-color: var(--color-glass-bg); /* Sfondo traslucido */
     backdrop-filter: blur(var(--blur-intensity)); /* Effetto blur */
     -webkit-backdrop-filter: blur(var(--blur-intensity)); /* Supporto Safari */
@@ -128,6 +135,7 @@ header .logo {
     font-size: 2em;
     color: var(--color-primary-green);
     text-decoration: none;
+    text-shadow: 0 0 3px var(--color-text-light, #FFFFFF), 0 0 5px rgba(58, 58, 58, 0.3);
 }
 
 nav ul {
@@ -154,15 +162,18 @@ nav ul li a:hover {
 
 section {
     padding: 60px 0;
+    background-color: var(--color-bg-light); /* Default background for all sections */
 }
 
 section:nth-child(even) {
-    background-color: var(--color-secondary-beige);
+    background-color: var(--color-secondary-beige); /* Override for even sections */
 }
         /* Assicura che la prima sezione (Hero) non abbia lo sfondo beige se è la prima */
+        /* This rule is still fine as a more specific override if needed, but the general one above should cover odd cases.
         section:first-of-type:nth-child(odd) {
             background-color: var(--color-bg-light);
         }
+        */
 
 
 h1, h2, h3 {
@@ -170,10 +181,11 @@ h1, h2, h3 {
             color: var(--color-primary-green); /* Titoli principali in Verde Salvia */
     margin-bottom: 20px;
             font-weight: 600; /* Un po' più di peso per i titoli Montserrat */
+    text-shadow: 0 0 3px var(--color-text-light, #FFFFFF), 0 0 5px rgba(58, 58, 58, 0.3); /* Applied to all h1,h2,h3 base */
 }
 h1 { font-size: 2.8em; text-align: center;}
 h2 { font-size: 2.2em; text-align: center; }
-        h3 { font-size: 1.8em; color: var(--color-primary-green-light); } /* H3 in verde salvia più chiaro o un accento */
+        h3 { font-size: 1.8em; color: var(--color-primary-green-light); } /* H3 in verde salvia più chiaro o un accento - inherits text-shadow */
 
 .button-primary {
     display: inline-block;
@@ -457,6 +469,7 @@ h2 { font-size: 2.2em; text-align: center; }
     margin-bottom: 8px;
     font-weight: 600;
     color: var(--color-primary-green); /* Etichette in Verde Salvia */
+    text-shadow: 0 0 3px var(--color-text-light, #FFFFFF), 0 0 5px rgba(58, 58, 58, 0.3);
 }
 #contatti input[type="text"],
 #contatti input[type="email"],
@@ -491,6 +504,7 @@ h2 { font-size: 2.2em; text-align: center; }
     color: var(--color-primary-green); /* Link in Verde Salvia */
     text-decoration: none;
     transition: var(--transition-smooth);
+    text-shadow: 0 0 2px var(--color-text-light, #FFFFFF), 0 0 4px rgba(58, 58, 58, 0.3); /* Slightly smaller shadow for links */
 }
 .contact-info p a:hover, footer a:hover {
     color: var(--color-primary-green-light); /* Verde Salvia più chiaro all'hover */
@@ -517,6 +531,8 @@ footer {
     text-align: center;
     padding: 40px 0; /* Più padding */
     font-size: 0.9em;
+    position: relative; /* Ensure it's above the animation background */
+    z-index: 10;      /* Ensure it's above the animation background */
 }
 /* footer a ereditato da .contact-info p a */
 

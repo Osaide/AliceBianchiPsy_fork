@@ -29,6 +29,16 @@ Il branding mira a comunicare professionalità, accoglienza, crescita e benesser
     *   **Animazioni di Entrata**: Effetto `fadeInUp` per le sezioni principali e alcune card per un caricamento progressivo.
     *   **Interazioni Hover**: Effetti di trasformazione (translate, scale, rotate) e `box-shadow` su card, bottoni e immagini per fornire feedback visivo su desktop. Questi effetti sono generalmente disabilitati o ridotti su mobile.
     *   **Bottoni Principali (`.button-primary`)**: Stile "outline" di base (bordo e testo colorati, sfondo trasparente), con riempimento di colore e effetto "glow" all'hover/focus.
+    *   **Serenity Animation Background**: Un effetto di background full-screen WebGL implementato utilizzando p5.js e shader GLSL.
+        *   **File Principali**:
+            *   `serenity.js`: Contiene la logica p5.js per inizializzare il canvas, caricare gli shader, e passare loro le uniformi (es. `uTime`, `uResolution`, colori). Il canvas è appeso al div `#serenity-animation-background` in `index.html`.
+            *   `serenity.css`: Definisce gli stili per `#serenity-animation-background` (posizionamento fisso, full-screen, z-index basso per stare dietro al contenuto), per il canvas stesso, e per il contenitore di testo `.serenity-text-container` (attualmente contiene un `h1` vuoto).
+            *   Gli script degli shader (vertex e fragment) sono inclusi direttamente in `index.html` con ID `#vertShader` e `#fragShader`.
+        *   **Considerazioni per lo Sviluppo Futuro (Agente)**:
+            *   **Parametri Animazione**: Colori, velocità (`uTime` in `serenity.js`), e altri parametri degli shader (es. `AMOUNT`, `scale` in `#fragShader`) possono essere modificati per alterare l'aspetto dell'animazione.
+            *   **Performance**: Essendo un'animazione WebGL full-screen, monitorare la performance su dispositivi meno potenti. Eventuali ottimizzazioni potrebbero riguardare la complessità degli shader o la frequenza di aggiornamento.
+            *   **Conflitti di Stile**: L'animazione è intesa come background. Assicurarsi che il contenuto principale del sito (header, main, footer) mantenga `z-index` e sfondi appropriati per garantire la leggibilità. Attualmente, il contenuto principale ha `z-index` più alti e sfondi opachi/traslucidi.
+            *   **Testo Sovrapposto**: Il `<h1>` in `.serenity-text-container` è attualmente vuoto (`&nbsp;`). Può essere utilizzato per testo o altri elementi da sovrapporre direttamente all'animazione, separati dal contenuto principale del sito.
 -   **Tipografia**: Fare riferimento a `brand.md` e alle variabili font in `:root`. Attualmente:
     *   `Montserrat` per corpo del testo e titoli.
     *   `Dancing Script` per il logo (`.logo`).
