@@ -135,6 +135,7 @@ header .logo {
     font-size: 2em;
     color: var(--color-primary-green);
     text-decoration: none;
+    text-shadow: 0 0 3px var(--color-text-light, #FFFFFF), 0 0 5px rgba(58, 58, 58, 0.3);
 }
 
 nav ul {
@@ -180,10 +181,11 @@ h1, h2, h3 {
             color: var(--color-primary-green); /* Titoli principali in Verde Salvia */
     margin-bottom: 20px;
             font-weight: 600; /* Un po' più di peso per i titoli Montserrat */
+    text-shadow: 0 0 3px var(--color-text-light, #FFFFFF), 0 0 5px rgba(58, 58, 58, 0.3); /* Applied to all h1,h2,h3 base */
 }
 h1 { font-size: 2.8em; text-align: center;}
 h2 { font-size: 2.2em; text-align: center; }
-        h3 { font-size: 1.8em; color: var(--color-primary-green-light); } /* H3 in verde salvia più chiaro o un accento */
+        h3 { font-size: 1.8em; color: var(--color-primary-green-light); } /* H3 in verde salvia più chiaro o un accento - inherits text-shadow */
 
 .button-primary {
     display: inline-block;
@@ -467,6 +469,7 @@ h2 { font-size: 2.2em; text-align: center; }
     margin-bottom: 8px;
     font-weight: 600;
     color: var(--color-primary-green); /* Etichette in Verde Salvia */
+    text-shadow: 0 0 3px var(--color-text-light, #FFFFFF), 0 0 5px rgba(58, 58, 58, 0.3);
 }
 #contatti input[type="text"],
 #contatti input[type="email"],
@@ -501,6 +504,7 @@ h2 { font-size: 2.2em; text-align: center; }
     color: var(--color-primary-green); /* Link in Verde Salvia */
     text-decoration: none;
     transition: var(--transition-smooth);
+    text-shadow: 0 0 2px var(--color-text-light, #FFFFFF), 0 0 4px rgba(58, 58, 58, 0.3); /* Slightly smaller shadow for links */
 }
 .contact-info p a:hover, footer a:hover {
     color: var(--color-primary-green-light); /* Verde Salvia più chiaro all'hover */

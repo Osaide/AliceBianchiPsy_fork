@@ -44,6 +44,8 @@ function draw() {
   s.setUniform('uResolution',[width,height]);
   // Note: p5.js frameCount is used internally by p5, so using a custom frameCount for shader time is good.
   // Using millis() for uTime is common.
+  s.setUniform('uTime', millis() / 250.0); // Increased speed; original was 1000.0, codepen was 100.0
+  // s.setUniform('uTime',millis()/100); // Original speed from codepen
   s.setUniform('uTime', millis() / 1000.0); // Using millis / 1000 for seconds is conventional for uTime
   // s.setUniform('uTime',millis()/100); // Original speed
 
