@@ -1,3 +1,10 @@
+/* This will be the main content wrapper from the original HTML */
+main {
+    position: relative;
+    z-index: 10;
+    background-color: var(--color-bg-light); /* Fallback background for main content area */
+}
+
 /* BASE STYLES */
 :root {
     --color-primary-green: #8FA88F; /* Verde Salvia - Principale */
@@ -71,7 +78,7 @@ header {
     border-bottom: 1px solid transparent; /* Rimuoviamo il bordo solido, lo gestirà il glassmorphism */
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 100; /* Adjusted z-index */
     background-color: var(--color-glass-bg); /* Sfondo traslucido */
     backdrop-filter: blur(var(--blur-intensity)); /* Effetto blur */
     -webkit-backdrop-filter: blur(var(--blur-intensity)); /* Supporto Safari */
@@ -154,15 +161,18 @@ nav ul li a:hover {
 
 section {
     padding: 60px 0;
+    background-color: var(--color-bg-light); /* Default background for all sections */
 }
 
 section:nth-child(even) {
-    background-color: var(--color-secondary-beige);
+    background-color: var(--color-secondary-beige); /* Override for even sections */
 }
         /* Assicura che la prima sezione (Hero) non abbia lo sfondo beige se è la prima */
+        /* This rule is still fine as a more specific override if needed, but the general one above should cover odd cases.
         section:first-of-type:nth-child(odd) {
             background-color: var(--color-bg-light);
         }
+        */
 
 
 h1, h2, h3 {
@@ -517,6 +527,8 @@ footer {
     text-align: center;
     padding: 40px 0; /* Più padding */
     font-size: 0.9em;
+    position: relative; /* Ensure it's above the animation background */
+    z-index: 10;      /* Ensure it's above the animation background */
 }
 /* footer a ereditato da .contact-info p a */
 
