@@ -9,6 +9,76 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Dott.ssa Alice Bianchi",
+          "jobTitle": "Psicologa, Psicoterapeuta in formazione, Psicologa dello Sport",
+          "alumniOf": [
+            {
+              "@type": "EducationalOrganization",
+              "name": "IUSVE - Istituto Universitario Salesiano Venezia"
+            },
+            {
+              "@type": "EducationalOrganization",
+              "name": "Università degli Studi di Padova"
+            },
+            {
+              "@type": "EducationalOrganization",
+              "name": "C.O.I.R.A.G."
+            }
+          ],
+          "email": "mailto:alice.bianchi.psicologa@gmail.com",
+          "image": "img/profilo/alice-bianchi-profilo.png",
+          "url": "https://URL_DEL_SITO_WEB.it", // Da sostituire con l'URL reale
+          "sameAs": [
+            "https://www.instagram.com/alicebianchi.psicologa/",
+            "https://www.miodottore.it/alice-bianchi-3/psicologo-psicologo-clinico/castelfranco-veneto"
+          ],
+          "knowsAbout": ["Psicologia Clinica", "Psicologia di Comunità", "Psicologia dello Sport", "Psicoterapia Psicodinamica", "Sostegno Psicologico", "Mental Training"],
+          "memberOf": {
+            "@type": "Organization",
+            "name": "Ordine degli Psicologi del Veneto",
+            "identifier": "12152"
+          },
+          "address": [
+            {
+              "@type": "PostalAddress",
+              "streetAddress": "Via Giuseppe Garibaldi 19",
+              "addressLocality": "Castelfranco Veneto",
+              "addressRegion": "TV",
+              "addressCountry": "IT"
+            },
+            {
+              "@type": "PostalAddress",
+              "streetAddress": "Piazza della Serenissima 60",
+              "addressLocality": "Castelfranco Veneto",
+              "addressRegion": "TV",
+              "addressCountry": "IT"
+            }
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "serviceType": ["Sostegno Psicologico", "Psicologia dello Sport", "Consulenza Psicologica"],
+          "provider": {
+            "@type": "Person",
+            "name": "Dott.ssa Alice Bianchi"
+          },
+          "name": "Servizi di Psicologia e Psicologia dello Sport",
+          "description": "Servizi di sostegno psicologico per adolescenti e adulti, psicologia dello sport per atleti e team, percorsi di crescita personale e gestione emotiva.",
+          "areaServed": {
+            "@type": "Place",
+            "name": "Castelfranco Veneto e online"
+          },
+          "image": "img/hero/hero-background.png" // Immagine generica del servizio o hero
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
@@ -16,8 +86,8 @@
         <div class="container">
             <div class="logo-area">
                 <a href="#" class="logo">Dott.ssa Alice Bianchi</a>
-                <div class="chat-avatar-container">
-                    <img src="img/icone/chat-avatar-placeholder.png" alt="Chatbot Avatar">
+                <div class="chat-avatar-container" role="button" tabindex="0" aria-label="Apri chat di assistenza">
+                    <img src="img/icone/chat-avatar-placeholder.png" alt="Avatar per avviare chat di assistenza" aria-hidden="true">
                 </div>
             </div>
             <nav>
@@ -45,7 +115,7 @@
 
         <section id="chi-sono">
             <div class="container content">
-                <img src="img/profilo/alice-bianchi-profilo.png" alt="Dott.ssa Alice Bianchi" loading="lazy">
+                <img src="img/profilo/alice-bianchi-profilo.png" alt="Foto profilo della Dott.ssa Alice Bianchi" loading="lazy">
                 <div class="text-content">
                     <h2>Piacere di Conoscerti, Sono Alice.</h2>
                     <p>Sono la Dott.ssa Alice Bianchi, Psicologa iscritta all'Ordine degli Psicologi del Veneto. La mia passione è accompagnare le persone attraverso i momenti di cambiamento e crescita, sia nella vita quotidiana che nel contesto sportivo.</p>
@@ -61,7 +131,7 @@
                 <h2>Un Percorso su Misura per Te</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <img src="img/servizi/sostegno-psicologico.png" alt="Sostegno Psicologico" loading="lazy">
+                        <img src="img/servizi/sostegno-psicologico.png" alt="Illustrazione astratta per Sostegno Psicologico e Benessere Emotivo" loading="lazy">
                         <h3>Sostegno Psicologico e Benessere Emotivo</h3>
                         <p>Offro supporto e sostegno psicologico a preadolescenti, adolescenti, giovani adulti e adulti che affrontano momenti di cambiamento, difficoltà o crisi personali e relazionali. Attraverso un approccio psicodinamico, lavoriamo insieme per esplorare emozioni, pensieri e comportamenti, portare alla luce dinamiche profonde e promuovere una maggiore consapevolezza di sé.</p>
                         <h4>Aree di intervento principali:</h4>
@@ -77,7 +147,7 @@
                         </ul>
                     </div>
                     <div class="service-card">
-                        <img src="img/servizi/psicologia-dello-sport.png" alt="Psicologia dello Sport" loading="lazy">
+                        <img src="img/servizi/psicologia-dello-sport.png" alt="Illustrazione astratta per Psicologia dello Sport" loading="lazy">
                         <h3>Psicologia dello Sport per Atleti e Team</h3>
                         <p>Affianco atleti singoli, squadre e staff tecnico per ottimizzare la performance e promuovere il benessere psicofisico. L'obiettivo è sviluppare abilità mentali, gestire la pressione agonistica, migliorare la comunicazione e favorire uno sviluppo sano, soprattutto nei giovani atleti. Ogni intervento è personalizzato.</p>
                         <h4>Aree di intervento principali:</h4>
@@ -142,19 +212,19 @@
                 <h2>Incontriamoci: Sedi e Modalità</h2>
                 <div class="locations-grid">
                     <div class="location-card">
-                        <img src="img/sedi/studio-castelfranco.png" alt="Studio Privato Castelfranco Veneto" loading="lazy">
+                        <img src="img/sedi/studio-castelfranco.png" alt="Ingresso dello studio privato a Castelfranco Veneto" loading="lazy">
                         <h3>Studio Privato Castelfranco Veneto</h3>
                         <p>Via Giuseppe Garibaldi 19, Castelfranco Veneto</p>
                         <p><em>Visito: Adulti, Ragazzi (dai 11 anni)</em></p>
                     </div>
                     <div class="location-card">
-                        <img src="img/sedi/sport-target.png" alt="Poliambulatorio Fisioterapia Sport Target" loading="lazy">
+                        <img src="img/sedi/sport-target.png" alt="Logo del Poliambulatorio Fisioterapia Sport Target" loading="lazy">
                         <h3>Poliambulatorio Fisioterapia Sport Target</h3>
                         <p>Piazza della Serenissima 60, Castelfranco Veneto</p>
                         <p><em>Visito: Adulti, Ragazzi (dai 11 anni)</em></p>
                     </div>
                     <div class="location-card">
-                         <img src="img/sedi/consulenza-online.png" alt="Consulenza Online" loading="lazy">
+                         <img src="img/sedi/consulenza-online.png" alt="Icona rappresentante una videochiamata per consulenze online" loading="lazy">
                         <h3>Consulenze Online</h3>
                         <p>Comodamente da casa tua, per percorsi flessibili e accessibili.</p>
                         <p><em>Visito: Adulti, Ragazzi (dai 14 anni)</em></p>
@@ -223,8 +293,8 @@
                     <p>Puoi anche trovarmi e prenotare su <a href="https://www.miodottore.it/alice-bianchi-3/psicologo-psicologo-clinico/castelfranco-veneto" target="_blank" rel="noopener noreferrer">Miodottore.it</a></p>
                 </div>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/alicebianchi.psicologa/" target="_blank" rel="noopener noreferrer" title="Instagram">
-                        <img src="img/icone/instagram.svg" alt="Instagram" style="width: 24px; height: 24px;">
+                    <a href="https://www.instagram.com/alicebianchi.psicologa/" target="_blank" rel="noopener noreferrer" aria-label="Profilo Instagram Dott.ssa Alice Bianchi">
+                        <img src="img/icone/instagram.svg" alt="Icona Instagram" style="width: 24px; height: 24px;" aria-hidden="true">
                     </a>
                 </div>
             </div>
