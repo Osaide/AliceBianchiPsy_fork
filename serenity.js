@@ -46,6 +46,8 @@ function draw() {
   // Using millis() for uTime is common.
   s.setUniform('uTime', millis() / 250.0); // Increased speed; original was 1000.0, codepen was 100.0
   // s.setUniform('uTime',millis()/100); // Original speed from codepen
+  s.setUniform('uTime', millis() / 1000.0); // Using millis / 1000 for seconds is conventional for uTime
+  // s.setUniform('uTime',millis()/100); // Original speed
 
   // These uniforms seem specific to the original Codepen's controls, may not be needed
   s.setUniform('uLowGpu',false);
