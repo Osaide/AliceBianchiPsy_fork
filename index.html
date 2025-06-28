@@ -190,7 +190,6 @@
                 <h2>Iniziamo il Tuo Percorso Insieme</h2>
                 <p style="text-align:center;">Se senti il bisogno di un supporto o vuoi esplorare come la psicologia può aiutarti, non esitare a contattarmi. Sarò felice di rispondere alle tue domande e fissare un primo colloquio conoscitivo.</p>
                 
-                <!-- FORM DI CONTATTO TEMPORANEAMENTE NASCOSTO
                 <form action="https://formspree.io/f/TUO_CODICE_FORMSPREE" method="POST">
                     <div>
                         <label for="name">Nome:</label>
@@ -209,15 +208,15 @@
                         <textarea id="message" name="message" required></textarea>
                     </div>
                     <div>
-                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <input type="checkbox" id="privacy" name="privacy" value="privacy-accepted" required>
                         <label for="privacy" style="font-weight:normal; display:inline;"> Acconsento al trattamento dei dati personali secondo la <a href="#privacy-policy-placeholder">Privacy Policy</a>.</label>
                     </div>
                     <button type="submit" class="button-primary">Invia Messaggio</button>
                 </form>
-                -->
+
 
                 <div class="contact-info">
-                    <p>Oppure contattami direttamente:</p>
+                    <p style="margin-top: 30px;">Oppure contattami direttamente:</p>
                     <p><strong>Email:</strong> <a href="mailto:alice.bianchi.psicologa@gmail.com">alice.bianchi.psicologa@gmail.com</a></p>
                     <!-- <p><strong>Telefono:</strong> <a href="tel:+39NUMERO">+39 TUO NUMERO</a> (se vuoi renderlo pubblico)</p> -->
                     <p>Puoi anche trovarmi e prenotare su <a href="https://www.miodottore.it/alice-bianchi-3/psicologo-psicologo-clinico/castelfranco-veneto" target="_blank" rel="noopener noreferrer">Miodottore.it</a></p>
@@ -240,8 +239,51 @@
         </div>
     </footer>
 
+    <!-- Mobile Navigation -->
+    <button class="mobile-nav-toggle" aria-label="Apri menu navigazione" aria-expanded="false" aria-controls="mobile-menu-container">
+        <!-- Icona Hamburger (esempio base, può essere SVG o altro) -->
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="mobile-menu-container" id="mobile-menu-container" aria-hidden="true">
+        <ul id="mobile-menu-items">
+            <li><a href="#chi-sono">Chi Sono</a></li>
+            <li><a href="#servizi">Servizi</a></li>
+            <li><a href="#approccio">Approccio</a></li>
+            <li><a href="#target">A Chi Mi Rivolgo</a></li>
+            <li><a href="#testimonianze">Dicono di Me</a></li>
+            <li><a href="#sedi-tariffe">Sedi e Tariffe</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+    </div>
+
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Logic
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const mobileMenuContainer = document.getElementById('mobile-menu-container');
+        const mobileMenuItems = document.querySelectorAll('#mobile-menu-items a');
+
+        if (mobileNavToggle && mobileMenuContainer) {
+            mobileNavToggle.addEventListener('click', () => {
+                const isOpen = mobileMenuContainer.classList.toggle('is-open');
+                mobileNavToggle.classList.toggle('is-active');
+                mobileNavToggle.setAttribute('aria-expanded', isOpen);
+                mobileMenuContainer.setAttribute('aria-hidden', !isOpen);
+            });
+
+            mobileMenuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    mobileMenuContainer.classList.remove('is-open');
+                    mobileNavToggle.classList.remove('is-active');
+                    mobileNavToggle.setAttribute('aria-expanded', 'false');
+                    mobileMenuContainer.setAttribute('aria-hidden', 'true');
+                });
+            });
+        }
     </script>
 
 </body>
