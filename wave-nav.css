@@ -1,0 +1,103 @@
+/* Stile per la navigazione a Onda Interattiva */
+
+/*
+ * STATO GLOBALE
+ * Classe aggiunta al <body> via JS per bloccare lo scroll nativo
+ * quando la nostra interfaccia è attiva.
+*/
+body.wave-nav-active {
+    overflow: hidden;
+}
+
+/*
+ * HEADER FISSO
+ * Assicuriamoci che l'header con il nome sia sempre visibile in alto.
+ * Dovrai probabilmente adattare il selettore (es. #header, .header-container)
+ * al tuo HTML esistente.
+*/
+header { /* O il selettore corretto per il tuo header */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Assicurati che abbia uno sfondo per non essere trasparente */
+    background-color: var(--color-bg-light, #FFFFFF);
+}
+
+
+/*
+ * CONTROLLER DI NAVIGAZIONE (Il contenitore in basso)
+*/
+#wave-nav-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Centra l'elemento orizzontalmente */
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*
+ * PULSANTE DI ATTIVAZIONE (Il "pallino")
+*/
+#nav-trigger {
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-primary-green, #8FA88F);
+    border-radius: 50%;
+    border: 2px solid var(--color-bg-light, #FFFFFF);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#nav-trigger:hover {
+    transform: scale(1.1);
+}
+
+/*
+ * CONTROLLER A ONDA (Nascosto di default)
+*/
+#wave-controller {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* Altezza dell'area interattiva */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px); /* Effetto vetro smerigliato */
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+    /* Nascosto fuori dallo schermo per default */
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* Transizione fluida */
+}
+
+/*
+ * STATO ATTIVO
+ * Quando questa classe è aggiunta, il controller appare dal basso.
+*/
+#wave-controller.is-active {
+    transform: translateY(0);
+}
+
+/*
+ * SVG DELL'ONDA
+*/
+#wave-svg {
+    position: absolute;
+    top: -50px; /* Posiziona il picco dell'onda sopra la barra */
+    left: 0;
+    width: 100%;
+    height: 100px;
+}
+
+#wave-svg .wave-path {
+    fill: var(--color-primary-green-darker, #7A9A7A);
+    stroke: var(--color-primary-green, #8FA88F);
+    stroke-width: 2;
+}
