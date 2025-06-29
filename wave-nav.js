@@ -111,10 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (wavePath && this.maxX > 0) { // Assicurati che maxX sia valido
                 // Dimensioni viewBox SVG: "0 0 1440 100"
                 // Path originale di riferimento: "M0,50 C360,120 1080,0 1440,50 L1440,100 L0,100 Z"
-
+                
                 const svgViewBoxWidth = 1440; // Larghezza come da viewBox
                 const svgViewBoxHeight = 100; // Altezza come da viewBox (per la parte dell'onda)
-
+                
                 const dragProgress = this.x / this.maxX; // Progresso normalizzato del drag (0-1)
 
                 // Y di base per l'inizio e la fine dell'onda (metà altezza del viewBox dell'onda)
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Assicuriamo che c1x sia sempre minore di c2x per una forma d'onda corretta
                 // e che non siano troppo vicini o troppo lontani.
                 const minSpread = svgViewBoxWidth * 0.2; // Minima distanza orizzontale tra i punti di controllo
-
+                
                 if (c1x >= c2x - minSpread) {
                     // Se c1x è troppo vicino o ha superato c2x (considerando lo spread)
                     // riposizionali mantenendo il dragProgress come guida principale per c2x
