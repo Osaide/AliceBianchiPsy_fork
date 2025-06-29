@@ -1,0 +1,24 @@
+<!-- ====== INIZIO NAVIGAZIONE A ONDA ====== -->
+<div id="wave-nav-container">
+    <!-- Questo è il pallino che l'utente clicca -->
+    <div id="nav-trigger"></div>
+
+    <!-- Questo contenitore appare al click e contiene l'onda -->
+    <div id="wave-controller">
+        <!-- L'onda SVG. Il 'd' definisce la forma della curva.
+             Questo è un placeholder, lo renderemo dinamico con JS. -->
+        <svg id="wave-svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path class="wave-path" d="M0,50 C360,120 1080,0 1440,50 L1440,100 L0,100 Z"></path>
+        </svg>
+        <!-- Aggiungeremo un elemento "handle" per il drag -->
+        <div id="wave-drag-handle" style="position:absolute; top:0; left:0; width:100%; height:100%;"></div>
+    </div>
+</div>
+<!-- ====== FINE NAVIGAZIONE A ONDA ====== -->
+
+<!-- Includiamo la libreria GSAP da CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+
+<!-- Includiamo il nostro script personalizzato -->
+<script src="wave-nav.js"></script>
