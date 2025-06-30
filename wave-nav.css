@@ -38,6 +38,7 @@ header { /* O il selettore corretto per il tuo header */
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra il #nav-trigger e il #wave-controller al suo interno */
+    /* Rimuovi transform: translateX(-50%) se width è 100% e left è 0 */
 }
 
 /*
@@ -54,6 +55,9 @@ header { /* O il selettore corretto per il tuo header */
     transition: transform 0.3s ease;
     position: relative;
     z-index: 2001; /* Sopra #wave-controller e #wave-nav-container */
+    position: relative; /* Per assicurare che sia sopra il controller se si sovrappongono */
+    z-index: 2001; /* Sopra #wave-controller e #wave-nav-container */
+    /* margin-bottom: 10px; Rimosso perché il controller ora è position:fixed e non sposta il trigger */
 }
 
 #nav-trigger:hover {
@@ -77,6 +81,7 @@ header { /* O il selettore corretto per il tuo header */
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s linear 0.5s;
     visibility: hidden;
     z-index: 1999;
+    z-index: 1999; /* Leggermente sotto #nav-trigger */
 }
 
 /*
