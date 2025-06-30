@@ -80,7 +80,7 @@ Il branding mira a comunicare professionalità, accoglienza, crescita e benesser
 -   I percorsi delle immagini sono relativi alla directory `img/`. Assicurarsi che le immagini siano presenti in tale directory.
 -   Testi e contenuti specifici (come testimonianze, dettagli dei servizi) sono presenti ma potrebbero necessitare di aggiornamenti o conferme da parte dell'utente.
 
-## 8. Task Futuri / Aree di Miglioramento (basati sulla discussione con l'utente)
+## 8. Task Futuri / Aree di Miglioramento
 
 -   **Navigazione Radiale Mobile (Avanzata)**: L'utente ha espresso interesse per una navigazione mobile radiale più sofisticata. L'attuale implementazione a "ventaglio" è un primo passo. Ulteriori sviluppi potrebbero richiedere JavaScript più complesso per calcolare posizioni dinamicamente e gestire interazioni touch/swipe più elaborate.
 -   **Effetti Visivi Avanzati (es. Three.js, Shaders)**: L'utente ha menzionato interesse per effetti come "liquid glass" (richiederebbe stack React/Three.js). Questo rappresenterebbe un cambio significativo nello stack tecnologico del progetto e andrebbe pianificato separatamente.
@@ -88,6 +88,7 @@ Il branding mira a comunicare professionalità, accoglienza, crescita e benesser
 -   **Lazy Loading Immagini**: Già implementato con `loading="lazy"` per le immagini principali. Verificare l'efficacia e considerare se applicarlo ad altre risorse.
 -   **Accessibilità (a11y)**: Eseguire controlli di accessibilità più approfonditi (contrasto colori, navigazione da tastiera completa per tutti gli elementi interattivi, test con screen reader).
 -   **Dati Strutturati (SEO)**: Considerare l'aggiunta di Schema.org markup per migliorare la comprensione del contenuto da parte dei motori di ricerca (es. per `LocalBusiness`, `Person`, `Service`).
+-   **Nota su Precedenti Esplorazioni**: In passato, è stata esplorata un'idea per una "Navigazione a Onda Interattiva" (basata su GSAP, con file associati `wave-nav.css`, `wave-nav.js`). Questa funzionalità non è attualmente implementata né pianificata per lo sviluppo attivo, essendo stata superata dall'attuale approccio "a ventaglio" e dai piani futuri per una navigazione radiale. I file relativi a questa esplorazione potrebbero essere rimossi per mantenere pulito il repository.
 
 ## 9. Come Interagire con l'Agente (Jules)
 
