@@ -31,13 +31,13 @@ header { /* O il selettore corretto per il tuo header */
 */
 #wave-nav-container {
     position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%); /* Centra l'elemento orizzontalmente */
+    bottom: 20px; /* Mantiene il trigger a 20px dal fondo */
+    left: 0; /* Allinea a sinistra */
+    width: 100%; /* Fai in modo che occupi tutta la larghezza */
     z-index: 2000;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Centra il #nav-trigger e il #wave-controller al suo interno */
 }
 
 /*
@@ -52,6 +52,8 @@ header { /* O il selettore corretto per il tuo header */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2001; /* Sopra #wave-controller e #wave-nav-container */
 }
 
 #nav-trigger:hover {
@@ -65,16 +67,16 @@ header { /* O il selettore corretto per il tuo header */
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 150px; /* Altezza dell'area interattiva */
+    width: 100%; /* Occuperà tutta la larghezza dello schermo */
+    height: 150px;
     background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px); /* Effetto vetro smerigliato */
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-
-    /* Nascosto fuori dallo schermo per default */
     transform: translateY(100%);
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* Transizione fluida */
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s linear 0.5s;
+    visibility: hidden;
+    z-index: 1999;
 }
 
 /*
@@ -83,6 +85,8 @@ header { /* O il selettore corretto per il tuo header */
 */
 #wave-controller.is-active {
     transform: translateY(0);
+    visibility: visible;
+    transition-delay: 0s;
 }
 
 /*
