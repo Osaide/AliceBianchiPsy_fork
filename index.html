@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="serenity.css">
+    <link rel="stylesheet" href="wave-nav.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -320,7 +321,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="year"></span> Dott.ssa Alice Bianchi - Psicologa. P.IVA: 05240210260</p>
+            <p>&copy; <span id="current-year"></span> Dott.ssa Alice Bianchi - Psicologa. P.IVA: 05240210260</p>
             <p>Iscr. Albo Psicologi Veneto n. 12152</p>
             <p><a href="#privacy-policy-placeholder">Privacy Policy</a> | <a href="#cookie-policy-placeholder">Cookie Policy</a></p>
             <p><small>Sito web statico. Per invio messaggi tramite form, si utilizza un servizio esterno.</small></p>
@@ -328,8 +329,32 @@
     </footer>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
+
+    <!-- ====== INIZIO NAVIGAZIONE A ONDA ====== -->
+    <div id="wave-nav-container">
+        <!-- Questo è il pallino che l'utente clicca -->
+        <div id="nav-trigger"></div>
+
+        <!-- Questo contenitore appare al click e contiene l'onda -->
+        <div id="wave-controller">
+            <!-- L'onda SVG. Il 'd' definisce la forma della curva. -->
+            <svg id="wave-svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+                <path class="wave-path" d="M0,50 C360,120 1080,0 1440,50 L1440,100 L0,100 Z"></path>
+            </svg>
+            <!-- Handle per il drag, copre l'intera area del controller -->
+            <div id="wave-drag-handle" style="position:absolute; top:0; left:0; width:100%; height:100%;"></div>
+        </div>
+    </div>
+    <!-- ====== FINE NAVIGAZIONE A ONDA ====== -->
+
+    <!-- Includiamo la libreria GSAP da CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+
+    <!-- Includiamo il nostro script personalizzato per l'onda -->
+    <script src="wave-nav.js"></script>
 
 <script id="vertShader" type="text">
 
